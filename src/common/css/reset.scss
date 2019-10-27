@@ -1,0 +1,148 @@
+*{margin: 0;padding: 0;}
+html,body{
+	height: 100%;
+	width: 100%;
+}
+body {
+    background: #f6f6f6;
+    color: rgba(0,0,0,.45);
+    font-family: '微软雅黑 Regular', '微软雅黑';
+    font-style: inherit;
+    line-height:1 !important;
+    font-size: 14px;
+    ol, ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 0;
+      }
+	
+}
+.anticon {
+	color: white;
+}               
+i{
+    font-style: inherit;
+}
+.text-center{
+        text-align: center;
+    }
+input,button{
+    border: none;
+    outline: none;
+}
+input{padding-left: 10px;border: 1px solid rgba(204, 204, 204, 1);}
+button{cursor: pointer;border: 1px solid rgba(204, 204, 204, 1);}
+.clearboth{clear: both;}
+.text-right{
+    text-align: right;
+}
+.text-left{
+    text-align: left;
+}
+.veralimiddle{
+   display: inline-block; vertical-align: middle;
+}
+.notallowed{cursor: not-allowed;}
+.cur{cursor: pointer;}
+textarea{
+    resize: none;
+    padding: 6px;
+}
+a{text-decoration: none;}
+p{
+    margin: 0;padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #a4a4a4;
+}
+:focus {
+    outline: 0
+}
+.textinline{
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.backgroundmotai{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index:70;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:rgba(0,0,0,0.3);
+}
+.backgroundmotaisecond{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index:1000;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:rgba(0,0,0,0.3);    
+}
+/*字体大小*/
+.fontlittle{
+    font-size: 12px;
+}
+.fontnormal{
+    font-size: 14px;
+}
+.fontmiddle{
+    font-size: 17px;
+}
+
+.systemstaricon{
+    color: red;font-size: 24px;vertical-align: middle;position: absolute;right: -20px;top: 3px;
+}
+
+
+//antd圣诞节彩蛋去除
+.christmas.ant-btn-primary:before{
+    display: none;
+}
+.btntype{
+           border:none;background-color: #5477eb;color: white;vertical-align: middle;border-radius: 3px;padding: 5px 16px;
+        }
+.stopbtn{
+            border:none;
+            background-color:#9D3D3D;
+            color:white;
+            margin-left: 10px;
+            text-align: center;
+            height: 32px;
+            border-radius: 3px;
+            padding: 0 15px;
+}  
+//如果宽度大于1620px
+@media only screen and (min-width:1620px) {      
+    body{
+        font-size: 16px;
+    }
+    .fontlittle{
+        font-size: 14px;
+    }
+    .fontnormal,.ant-tree,.ant-radio-wrapper,.ant-input,.ant-btn,.ant-select,.ant-select-dropdown,.ant-select-tree{
+        font-size: 16px;
+    }    
+    .fontmiddle{
+        font-size: 19px;
+    }
+    .ssmain .ssinnermain .ssthree .systitle .sysleftpaler{
+        top:5px !important;
+    }
+}
+
+@media only screen and (min-width:1670px) {
+    .sysmanner .bottom .tab-item{
+        margin-right: 30px;
+    }
+}
+

@@ -1,0 +1,10 @@
+
+
+@mixin list($direction:column,$justifycontent:flex-start,$alignitems:center,$wrap:wrap){
+    display:flex;
+    flex-direction:$direction;
+    justify-content:$justifycontent;
+    align-items:$alignitems;
+    flex-wrap:$wrap; 
+}
+
