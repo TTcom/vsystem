@@ -1,6 +1,6 @@
 <template>
 	<div class="sign">
-	  <transition name="fade">
+	  <transition name="fadeqa">
 			<div class="container" v-show="isdata">
 				 <h2>Welcome to the new world</h2> 
 				 <div class="signinput">
@@ -106,7 +106,7 @@
 			}
 			
 		}
-		.fade-enter{
+		.fadeqa-enter{
 			 top:-15px;
 		     opacity: 0
 		}

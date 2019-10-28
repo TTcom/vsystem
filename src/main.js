@@ -4,6 +4,8 @@ import router from './router'
 import store from './store'
 import './common/css/reset.scss'
 import { breadcrumbItem,Button, Select,Message,breadcrumb} from 'element-ui';
+
+
 Message.install = function (Vue, options) {
   Vue.prototype.$message = Message
 }
@@ -13,6 +15,7 @@ Vue.use(Select)
 Vue.use(Message)
 Vue.use(breadcrumb)
 Vue.use(breadcrumbItem)
+
 new Vue({
   router,
   store,
