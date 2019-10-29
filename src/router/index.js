@@ -12,24 +12,26 @@ const routes = [
   {
     path: '/main',
     name: 'main',
+	meta:"文章管理",
     component: () => import( '../views/main.vue'),
 	children:[
 		{
 			  path: "/",
-			  redirect: '/main/people',
-			  meta:"人员管理",
-			  component: () => import('../components/people.vue'),
+			  redirect: '/main/articleList',
+			  meta:"文章列表",
+			  component: () => import('../components/article/articleList.vue'),
 		},        	   
 		{
-			  path: "/main/people",
-			  meta:"人员管理",
-			  component: () => import('../components/people.vue'),
+			  path: "/main/articleList",
+			  meta:"文章列表",
+			  component: () => import('../components/article/articleList.vue'),
 		},
 		{
-			  path: "/main/article",
-			  meta:"文章管理",
-			  component: () => import('../components/article.vue'),
+			  path: "/main/writeArticle",
+			  meta:"文章发布",
+			  component: () => import('../components/article/writeArticle.vue'),
 		},
+		
 	]
   },
   

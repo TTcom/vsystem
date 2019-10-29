@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './common/css/reset.scss'
-import { breadcrumbItem,Button, Select,Message,breadcrumb} from 'element-ui';
+import { breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination} from 'element-ui';
 
 
 Message.install = function (Vue, options) {
@@ -15,7 +15,9 @@ Vue.use(Select)
 Vue.use(Message)
 Vue.use(breadcrumb)
 Vue.use(breadcrumbItem)
-
+Vue.use(table)
+Vue.use(tableColumn)
+Vue.use(pagination)
 new Vue({
   router,
   store,

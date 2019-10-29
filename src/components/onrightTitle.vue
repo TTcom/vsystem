@@ -5,7 +5,7 @@
 			<div class="htleft">
 				<el-breadcrumb separator="/">
 					<el-breadcrumb-item>首页</el-breadcrumb-item>
-					<el-breadcrumb-item>{{breadContent}}</el-breadcrumb-item>
+					<el-breadcrumb-item v-for="(item,index) in breadContentarr" :key="index">{{item.name}}</el-breadcrumb-item>
 				</el-breadcrumb>
 			</div>
 			<div class="htright" @mouseenter="isShowUserList=true" @mouseleave="thisisleave">
@@ -41,7 +41,6 @@
 		data() {
 			return {
 				isShowUserList: false,
-				breadContent: "人员管理",
 				greetcontent: "",
 				greetText: [{
 						text: "早上好，Jarvis，用力呼吸新的空气，开始美好的一天吧！"
@@ -58,18 +57,18 @@
 					{
 						text: "晚上好，Jarvis，记得吃饭，记得睡觉！"
 					}
-				]
+				],
+				breadContentarr:[]
 			}
 		},
 		watch: {
 			'$route'(to, from) {
-				if (to.meta) {
-					this.breadContent = to.meta;
-				}
+                this.changeTitletext();
 			}
 		},
 		created() {
-
+            
+			this.changeTitletext();
 			this.getNowTime();
 			setInterval(() => {
 				this.getNowTime();
@@ -77,6 +76,15 @@
 
 		},
 		methods: {
+			changeTitletext(){
+				this.breadContentarr = [];
+				let arr = this.$route.matched;
+				arr.forEach(value=>{
+					this.breadContentarr.push({"name":value.meta});
+				})
+				 console.log(this.breadContentarr);
+				 
+			},
 			thisisleave() {
 				this.isShowUserList = false
 				console.log(this.isShowUserList)
@@ -112,11 +120,9 @@
 		width: 100%;
 		background: #fff;
 		padding: 16px 25px 0;
-		border: 1px solid #e8e8e8;
 		box-sizing: border-box;
 		padding-bottom: 16px;
 		padding-top: 0;
-
 		.headertop {
 			display: flex;
 			flex-direction: row;
