@@ -102,15 +102,14 @@
 <style lang="scss">
 	
 	.main{
-		height: 100%;
-		width: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: flex-start;
+		background: #f0f2f5;
+		width: 100%;
 		.left{
 			width: 280px;
 			background: #272626;
-			height: 100%;
 			h2{
 				text-align: left;
 				padding-left: 15px;
@@ -170,11 +169,12 @@
 		}
 		.onright{
 			flex-grow: 1;
-			height: 100%;
+			min-height: 100vh;
 			padding:0 5px;
 			padding-top: 5px;
 			box-sizing: border-box;
-			width: 0;
+			overflow: hidden;
+			
 		}
 	}
 	
