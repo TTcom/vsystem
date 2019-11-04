@@ -5,7 +5,7 @@
 			<div class="htleft">
 				<el-breadcrumb separator="/">
 					<el-breadcrumb-item>首页</el-breadcrumb-item>
-					<el-breadcrumb-item v-for="(item,index) in breadContentarr" :key="index">{{item.name}}</el-breadcrumb-item>
+					<el-breadcrumb-item v-for="(item,index) in breadContentarr" :key="index">{{item}}</el-breadcrumb-item>
 				</el-breadcrumb>
 			</div>
 			<div class="htright" @mouseenter="isShowUserList=true" @mouseleave="thisisleave">
@@ -15,7 +15,7 @@
 					<div class="userspare" v-show="isShowUserList">
 						<ul>
 							<li>个人中心</li>
-							<li>退出登录</li>
+							<li @click="goOut">退出登录</li>
 						</ul>
 					</div>
 				</transition>
@@ -37,6 +37,8 @@
 	</div>
 </template>
 <script>
+	import {mapState,mapGetters,mapActions} from 'vuex'
+	import {loginOut} from 'common/api/login' 
 	export default {
 		data() {
 			return {
@@ -57,8 +59,8 @@
 					{
 						text: "晚上好，Jarvis，记得吃饭，记得睡觉！"
 					}
-				],
-				breadContentarr:[]
+				]
+		
 			}
 		},
 		watch: {
@@ -66,8 +68,11 @@
                 this.changeTitletext();
 			}
 		},
-		created() {
-            
+		computed:{
+			...mapGetters(['breadContentarr'])
+	
+		},
+		mounted() {
 			this.changeTitletext();
 			this.getNowTime();
 			setInterval(() => {
@@ -76,14 +81,24 @@
 
 		},
 		methods: {
-			changeTitletext(){
-				this.breadContentarr = [];
-				let arr = this.$route.matched;
-				arr.forEach(value=>{
-					this.breadContentarr.push({"name":value.meta});
+			goOut(){
+				loginOut().then(res=>{
+					console.log(res);
+					if(res.data.code == 0){
+						this.$message({showClose: true,message: '退出成功', type: 'success'});
+						this.$router.push('/')
+					}else{
+						this.$message({showClose: true,message: res.data.msg,type: 'error'});
+						this.$router.push('/')
+					}
 				})
-				 console.log(this.breadContentarr);
-				 
+			},
+			...mapActions(['OnbreadContentarr']),
+			changeTitletext(){
+				let arr = [];
+				
+				arr = this.$route.meta.split("-");
+                this.OnbreadContentarr(arr);
 			},
 			thisisleave() {
 				this.isShowUserList = false

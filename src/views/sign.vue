@@ -4,10 +4,10 @@
 			<div class="container" v-show="isdata">
 				 <h2>Welcome to the new world</h2> 
 				 <div class="signinput">
-					 <input type="text" placeholder="your name"  v-model="username">
+					 <input type="text" @keyup.enter="login" placeholder="your name" id="username" v-model="username">
 				 </div>
 				 <div class="signinput">
-					 <input type="password" placeholder="your password" v-model="password">
+					 <input type="password" @keyup.enter="login" placeholder="your password" v-model="password">
 				 </div>
 				 <div class="signinput">
 				 		  <el-button type="primary" @click="login">login</el-button>
@@ -19,7 +19,9 @@
 </template>
 
 <script>
-	
+	import {Login} from 'common/api/login'
+	import axios from 'axios'
+	import qs from 'qs'
 	export default{
 		data(){
 			return{
@@ -35,13 +37,28 @@
 		},
 		methods:{
 			login(){
+				if(this.usertest()){
+					return;
+				}
+				var  params = {"account":this.username,"password":this.password}
 				
-			if(this.usertest()){
+				Login(params).then(res=>{
+					console.log(res);
+					if(res.data.code == 0){
+						this.$message({showClose: true,message: '登录成功', type: 'success'});
+						this.$router.push('/article')
+					}else{
+						this.$message({
+						  showClose: true,
+						  message: res.data.msg,
+						  type: 'error'
+						});
+					}
+					
+				});
 				
-				this.$router.push('/main')
 				
-			}
-			console.log("login");
+
 				
 			},
 			usertest(){

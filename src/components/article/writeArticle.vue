@@ -1,11 +1,20 @@
 <template>
      <div class="writeArticle">
-			<div class="editor">
-			    <div ref="toolbar" class="toolbar">
-			    </div>
-			    <div ref="editor" class="text">
-			    </div>
-			  </div>
+		<el-card class="box-card" >
+			<el-row :gutter="3" type="flex" align="middle" >
+			  <el-col :span="3"><h2>请输入文章标题</h2></el-col>
+			  <el-col :span="15"><el-input  placeholder="请输入文章标题"></el-input></el-col>
+			</el-row>
+		</el-card>	
+		<div class="editor">
+			<div ref="toolbar" class="toolbar">
+			</div>
+			<div ref="editor" class="text">
+			</div>
+		</div>
+		<el-row style="margin: 20px 0;" type="flex" justify="end">
+			<el-button type="primary" style="width: 270px;" @click="publish">发布</el-button>
+		</el-row>
 	 </div>
 </template>
 
@@ -54,6 +63,10 @@
 	      this.editor.txt.html(this.value)
 	    },
 	    methods: {
+		  publish(){
+			console.log(this.editor.txt.text())
+			console.log(this.editor.txt.html())  
+		  },	
 	      seteditor() {
 	        // http://192.168.2.125:8080/admin/storage/create
 	        this.editor = new E(this.$refs.toolbar, this.$refs.editor)
@@ -62,7 +75,7 @@
 	        this.editor.customConfig.uploadImgHeaders = { }// 自定义 header
 	        this.editor.customConfig.uploadFileName = 'file' // 后端接受上传文件的参数名
 	        this.editor.customConfig.uploadImgMaxSize = 2 * 1024 * 1024 // 将图片大小限制为 2M
-	        this.editor.customConfig.uploadImgMaxLength = 6 // 限制一次最多上传 3 张图片
+	        this.editor.customConfig.uploadImgMaxLength = 1 // 限制一次最多上传 3 张图片
 	        this.editor.customConfig.uploadImgTimeout = 3 * 60 * 1000 // 设置超时时间
 	
 	        // 配置菜单
@@ -96,6 +109,7 @@
 	          },
 	          success: (xhr, editor, result) => {
 	            // 图片上传成功回调
+				console.log(result)
 	          },
 	          timeout: (xhr, editor) => {
 	            // 网络超时的回调
@@ -110,7 +124,7 @@
 	            //insertImg()为插入图片的函数
 	             //循环插入图片
 	            // for (let i = 0; i < 1; i++) {
-	              // console.log(result)
+	              console.log(result)
 	              let url = "http://otp.cdinfotech.top"+result.url
 	              insertImg(url)
 	            // }
@@ -128,18 +142,31 @@
 </script>
 
 <style lang="scss">
-  .editor {
-      width: 100%;
-      margin: 0 auto;
-      position: relative;
-      z-index: 0;
-    }
-    .toolbar {
-      border: 1px solid #ccc;
-    }
-    .text {
-      border: 1px solid #ccc;
-      min-height: 500px;
-    }
+.writeArticle{
+	
+	.box-card{
+		border: 1px solid #ccc;
+		margin-bottom: 20px;
+	}
+	.editor {
+		background-color: white;
+	    width: 100%;
+	    margin: 0 auto;
+	    position: relative;
+	    z-index: 0;
+		.w-e-text{
+			overflow-y: auto;
+			min-height: 430px;
+		}
+	  }
+	  .toolbar {
+	    border: 1px solid #ccc;
+	  }
+	  .text {
+	    border: 1px solid #ccc;
+	    min-height: 430px;
+	  }	
+}
+  
   
 </style>

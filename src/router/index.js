@@ -10,30 +10,58 @@ const routes = [
     component: () => import('../views/sign.vue')
   },
   {
-    path: '/main',
-    name: 'main',
-	meta:"文章管理",
+    path: '/article',
     component: () => import( '../views/main.vue'),
+	meta:"文章管理",
 	children:[
 		{
 			  path: "/",
-			  redirect: '/main/articleList',
-			  meta:"文章列表",
+			  redirect: '/article/articleList',
+			  meta:"文章管理-文章列表",
 			  component: () => import('../components/article/articleList.vue'),
 		},        	   
 		{
-			  path: "/main/articleList",
-			  meta:"文章列表",
+			  path: "/article/articleList",
+			  name:"文章列表",
+			  meta:"文章管理-文章列表",
 			  component: () => import('../components/article/articleList.vue'),
 		},
 		{
-			  path: "/main/writeArticle",
-			  meta:"文章发布",
+			  path: "/article/writeArticle",
+			  name:"文章发布",
+			  meta:"文章管理-文章发布",
 			  component: () => import('../components/article/writeArticle.vue'),
 		},
 		
 	]
   },
+  {
+    path: '/user',
+    component: () => import( '../views/main.vue'),
+	meta:"用户管理",
+  	children:[
+  		{
+  			  path: "/",
+  			  redirect: '/user/userList',
+  			  meta:"用户管理-用户列表",
+  			  component: () => import('../components/user/userList.vue'),
+  		},        	   
+  		{
+  			  path: "/user/userList",
+			  name:"用户列表",
+  			  meta:"用户管理-用户列表",
+  			  component: () => import('../components/user/userList.vue'),
+  		},
+  		{
+  			  path: "/user/userManner",
+			  name:"用户发布",
+  			  meta:"用户管理-用户发布",
+  			  component: () => import('../components/user/userManner.vue'),
+  		},
+  		
+  	]
+  },
+  
   
 ]
 

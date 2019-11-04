@@ -7,10 +7,14 @@
 			</h2>
 			<ul>
 				<li v-for="(item,index) in systemarr">
-					<div class="lititle paddingleft cur" @click="ontitleli(index)"><i class="el-icon-tickets"></i>{{item.name}}<i class="el-icon-arrow-down" :class="{roate180:index==vindex}"></i></div>
-					<transition @enter="enter" @afterEnter="afterEnter" @leave="leave" @afterLeave="afterLeave" name="grouptree">
+					<div class="lititle paddingleft cur" @click="ontitleli(index)">
+						<i class="el-icon-tickets"></i> 
+						<span :class="{cwhite:breadContentarr[0]==item.meta}">{{item.meta}}</span> 
+						<i class="el-icon-arrow-down" :class="{roate180:index==vindex}"></i>
+					</div>
+					<transition @enter="enter" @afterEnter="afterEnter" @leave="leave" @afterLeave="afterLeave">
 						<ul class="onvueheight" v-show="index==vindex">
-							<router-link v-for="initem in item.children" :key="initem.id"  tag="li" class="paddingleft tab-item" :to="initem.path" >
+							<router-link v-for="(initem,vndex) in item.children" :key="vndex"  tag="li" class="paddingleft tab-item" :to="initem.path" >
 									{{initem.name}}
 							 </router-link>
 						</ul>
@@ -30,6 +34,7 @@
 
 <script>
 	import OnrightTitle from 'components/onrightTitle'
+	import {mapGetters} from 'vuex'
 	export default{
 		components:{
 			OnrightTitle
@@ -39,18 +44,27 @@
 				vindex:0,
 				titlearr:["浪子回头","Keep Walk","不再回头","再见昨天","为了明天","为了信仰"],
 				title:'',
-				systemarr:[
-					   {"name":"文章管理","id":11,
-							 children:[
-								 {"name":"文章列表","path":"/main/articleList","id":11},
-								 {"name":"文章发布","path":"/main/writeArticle","id":12}
-							 ]
-					   },
-
-					]
+				systemarr:[]
 			}
 		},
+		computed:{
+			
+			...mapGetters(['breadContentarr'])
+			
+		},
 		created(){
+			let {routes} = this.$router.options;
+			console.log(routes);
+			let arr = routes.slice();
+			arr.shift();
+			arr.forEach(value=>{
+				value.children = value.children.filter(palue=>{
+					return palue.path!="/";
+				})
+			})
+			console.log("arr",arr)
+			this.systemarr = arr;
+			
             this.getTitlename();
 			setInterval(()=>{
 				this.getTitlename()
@@ -58,6 +72,26 @@
 
 		},
 		methods:{
+			
+			ontitleli(index){
+		
+				if(index == this.vindex){
+					this.vindex =  -1;
+				}else{
+					this.vindex =  index;
+				}
+			},
+			getTitlename(){
+				let length = this.titlearr.length;
+				let index = Math.floor(Math.random()*length);
+				
+				if(this.titlearr[index] == this.title){
+					this.getTitlename();
+				}else{
+					this.title = this.titlearr[index];
+				}
+				
+			},
 			enter(el) {
 				el.style.height = 'auto';
 				let endWidth = window.getComputedStyle(el).height;
@@ -76,25 +110,6 @@
 			afterLeave(el) {
 				el.style.height = null;
 			},
-			ontitleli(index){
-				console.log("index",index)
-				if(index == this.vindex){
-					this.vindex =  -1;
-				}else{
-					this.vindex =  index;
-				}
-			},
-			getTitlename(){
-				let length = this.titlearr.length;
-				let index = Math.floor(Math.random()*length);
-				console.log(index);
-				if(this.titlearr[index] == this.title){
-					this.getTitlename();
-				}else{
-					this.title = this.titlearr[index];
-				}
-				
-			}
 		}
 	}
 </script>
@@ -128,7 +143,6 @@
 			}
 			ul{
 				li{
-					height: 45px;
 					line-height: 45px;
 					color: hsla(0,0%,100%,.65);
 					transition: color .3s cubic-bezier(.645,.045,.355,1)
@@ -150,6 +164,9 @@
 					.roate180{
 						transition: all .3s;
 						transform: rotateX(180deg);
+					}
+					.cwhite{
+						color: white;
 					}
 				}
 				.paddingleft{
