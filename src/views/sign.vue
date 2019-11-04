@@ -37,7 +37,7 @@
 		},
 		methods:{
 			login(){
-				if(this.usertest()){
+				if(!this.usertest()){
 					return;
 				}
 				var  params = {"account":this.username,"password":this.password}
