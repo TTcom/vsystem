@@ -21,6 +21,9 @@ export const doPost = (config)=>{
 	},err=>{
 		return Promise.reject(err);
 	});
+	//设置响应拦截器
+	instance.interceptors.response.use(res=>res.data,err=>Promise.reject(err));
+	
 
 	
 	return instance(config)
