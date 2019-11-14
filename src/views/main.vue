@@ -190,6 +190,7 @@
 			padding:0 5px;
 			padding-top: 5px;
 			box-sizing: border-box;
+			width: 0;
 			overflow: hidden;
 			
 		}

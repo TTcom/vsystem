@@ -14,7 +14,9 @@ export const doPost = (config)=>{
 	//请求的时候会执行此方法-拦截器
 	instance.interceptors.request.use((config)=>{    //config当前请求的配置
 		config.method="post"
+		config.headers.AccessToken=localStorage.getItem('vsys_token')
 		if(config.data){
+			
 			config.data=qs.stringify(config.data); 
 		}
 		return config

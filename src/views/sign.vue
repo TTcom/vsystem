@@ -1,7 +1,7 @@
 <template>
 	<div class="sign">
 	  <transition name="fadeqa">
-			<div class="container" v-show="isdata">
+			<div class="container" v-show="isdata" @keyup.enter="login">
 				 <h2>Welcome to the new world</h2> 
 				 <div class="signinput">
 					 <input type="text" @keyup.enter="login" placeholder="your name" id="username" v-model="username">
@@ -44,13 +44,14 @@
 				
 				Login(params).then(res=>{
 					console.log(res);
-					if(res.data.code == 0){
+					if(res.code == 0){
 						this.$message({showClose: true,message: '登录成功', type: 'success'});
+						localStorage.setItem('vsys_token',res.data)
 						this.$router.push('/article')
 					}else{
 						this.$message({
 						  showClose: true,
-						  message: res.data.msg,
+						  message: res.msg,
 						  type: 'error'
 						});
 					}
