@@ -8,10 +8,10 @@ export const doPost = (config)=>{
 
 	 const instance =  axios.create({
 		//baseURL:process.env.NODE_ENV === "development" ? 'http://localhost:3000' : '/',
-		baseURL:'http://221.224.123.197:50003',
-		timeout:5000,
+		//baseURL:'http://221.224.123.197:50003',
+		timeout:3000
 	});
-	//请求的时候会执行此方法-拦截器
+	//请求前的时候会执行此方法-拦截器
 	instance.interceptors.request.use((config)=>{    //config当前请求的配置
 		config.method="post"
 		config.headers.AccessToken=localStorage.getItem('vsys_token')

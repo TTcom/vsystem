@@ -4,13 +4,16 @@
 			<div class="container" v-show="isdata" @keyup.enter="login">
 				 <h2>Welcome to the new world</h2> 
 				 <div class="signinput">
-					 <input type="text" @keyup.enter="login" placeholder="your name" id="username" v-model="username">
+					 <input type="text"  placeholder="your name" id="username" v-model="username">
 				 </div>
 				 <div class="signinput">
-					 <input type="password" @keyup.enter="login" placeholder="your password" v-model="password">
+					 <input type="password"  placeholder="your password" v-model="password">
 				 </div>
 				 <div class="signinput">
-				 		  <el-button type="primary" @click="login">login</el-button>
+				 		  <el-button type="primary" :loading="islogining" :disabled="islogining" @click="login">
+							   {{ islogining ? "logining" : "login"}}
+							   
+						  </el-button>
 				 </div>
 				 
 			</div>
@@ -27,7 +30,8 @@
 			return{
 				isdata:false,
 				username:"",
-				password:""
+				password:"",
+				islogining:false
 			}
 		},
 		mounted(){
@@ -40,10 +44,16 @@
 				if(!this.usertest()){
 					return;
 				}
-				var  params = {"account":this.username,"password":this.password}
+				
+				if(this.islogining){
+					return;
+				}
+				this.islogining = true;
+				let  params = {"account":this.username,"password":this.password}
 				
 				Login(params).then(res=>{
 					console.log(res);
+					
 					if(res.code == 0){
 						this.$message({showClose: true,message: '登录成功', type: 'success'});
 						localStorage.setItem('vsys_token',res.data)
@@ -56,7 +66,10 @@
 						});
 					}
 					
-				});
+				}).finally(()=>{
+					console.log("finally");
+					this.islogining = false;
+				})
 				
 				
 

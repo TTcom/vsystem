@@ -5,7 +5,7 @@
             stripe
 			border
 			@row-click="getuserdetail"
-            style="width: 100%">
+            style="width: 100%;cursor: pointer;">
 			<el-table-column
 			  type="index"
 			  label="序号"
@@ -45,33 +45,29 @@
 		  		    </el-pagination>
 		  	</el-col>
 		  </el-row>
-		 <el-dialog
-		   title="提示"
-		   :visible.sync="dialogVisible"
-		   width="30%"
-		   :before-close="handleClose">
-		   <span>这是一段信息</span>
-		   <span slot="footer" class="dialog-footer">
-		     <el-button @click="dialogVisible = false">取 消</el-button>
-		     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-		   </span>
-		 </el-dialog>
+
 		  <el-drawer
-		    title="我是标题"
+		    title="用户详情"
 		    :visible.sync="drawer"
-		    :direction="direction"
-		    :before-close="handleClose">
-		    <span>我来啦!</span>
+			:direction="direction"
+			:size="size"
+		    >
+		    <Userdetail :userobj="userobj"></Userdetail>
 		  </el-drawer>
   </div>
 </template>
 <script>
 	import {getUserList} from 'common/api/usermanner'
-	//import { MessageBox } from 'element-ui'
+    import Userdetail from 'components/user/userdetail'
 	export default{
+		components:{
+			Userdetail
+		},
 		data(){
 			return{
-				 dialogVisible: false,
+				size:"45%",
+				userobj:{},
+				dialogVisible: false,
 				drawer: false,
 				direction: 'rtl',
 				userData:[],
@@ -83,17 +79,15 @@
 		created(){
 			this.getUselist(this.pageNum)
 		},
+		mounted() {
+		
+		},
 		methods:{
-			 handleClose(done) {
-			        this.$confirm('确认关闭？')
-			          .then(_ => {
-			            console.log(34234)
-			          })
-			          .catch(_ => {});
-			      },
+			 
 			getuserdetail(row){
 				console.log(row);
-				this.dialogVisible = true
+				this.userobj = row;
+				this.drawer = true
 				
 				
 				// MessageBox.confirm(`Do you really want to delete ${row.name} ?`,
@@ -118,7 +112,7 @@
 				  getUserList(params).then(res=>{
 				  	console.log(res);
 				  	this.userData = res.data.data;
-				  	this.total = res.data.totalPage * this.pageSize;
+				  	this.total = res.data.totalSize;
 				  });
 				  
 				  
