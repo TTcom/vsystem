@@ -33,14 +33,15 @@
     </div>
     <div class="onright">
       <onrightTitle></onrightTitle>
-      <div style="margin-top: 20px;"></div>
-      <router-view></router-view>
+      <div class="rightcontent">
+           <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import OnrightTitle from "components/onrightTitle";
+import OnrightTitle from "./onrightTitle";
 import { mapGetters } from "vuex";
 export default {
   components: {
@@ -210,6 +211,14 @@ export default {
     box-sizing: border-box;
     width: 0;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    .rightcontent{
+      margin-top: 20px;
+      overflow: auto;
+      flex-grow: 1;
+      height: 0;
+    }
   }
 }
 </style>
