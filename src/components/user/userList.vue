@@ -15,6 +15,24 @@
               prop="name"
               label="姓名"
               >
+			</el-table-column>
+			<el-table-column
+              prop="account"
+              label="账号"
+              >
+			</el-table-column>
+			<el-table-column
+              prop="loginDate"
+              label="最近登录时间"
+              >
+			</el-table-column>
+			<el-table-column
+              prop="certStatus"
+              label="认证状态"
+			  >
+			  <template slot-scope="{row}">
+				{{ row.certStatus == 1 ? '已认证' : row.certStatus == 2 ? "认证失败" : "未认证" }}
+			  </template>
             </el-table-column>
 			<el-table-column
 			  prop="sex"
@@ -23,11 +41,6 @@
 			  <template slot-scope="{row}">
 				  {{row.sex == 1 ? '男' : '女'}}
 			  </template>
-			</el-table-column>
-			<el-table-column
-			  prop="id"
-			  label="id"
-			  >
 			</el-table-column>
 			<el-table-column
 			  prop="email"

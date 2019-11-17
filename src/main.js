@@ -6,7 +6,7 @@ import './common/css/reset.scss'
 import { 
   breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination,Row,Input,
   Col,Card,Drawer,Dialog,MessageBox,Form,
-  FormItem,
+  FormItem,Option,
 } from 'element-ui';
 
 
@@ -35,7 +35,7 @@ Vue.use(Drawer)
 Vue.use(Dialog)
 Vue.use(Form);
 Vue.use(FormItem);
-
+Vue.use(Option);
 
 
 new Vue({

@@ -57,7 +57,7 @@
 		</div>
 	  </template>
 	  <script>
-		  import {getarticleList} from 'common/api/article'
+		  import {GetarticleList} from 'common/api/article'
 		  import Userdetail from 'components/user/userdetail'
 		  export default{
 			  components:{
@@ -106,13 +106,10 @@
 					},
 					getarticleList(pageNum){
 						let params = {
-							title:'',
-							isPublish:'',
 							page:this.pageNum,
-							creatorName:'',
 							pageSize:this.pageSize
 						}
-						getarticleList(params).then(res=>{
+						GetarticleList(params).then(res=>{
 							console.log(res);
 							// this.userData = res.data.data;
 							// this.total = res.data.totalSize;

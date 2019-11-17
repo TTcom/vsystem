@@ -9,7 +9,7 @@ export const doPost = (config)=>{
 	 const instance =  axios.create({
 		//baseURL:process.env.NODE_ENV === "development" ? 'http://localhost:3000' : '/',
 		//baseURL:'http://221.224.123.197:50003',
-		timeout:3000
+		//timeout:3000
 	});
 	//请求前的时候会执行此方法-拦截器
 	instance.interceptors.request.use((config)=>{    //config当前请求的配置
