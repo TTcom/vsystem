@@ -12,12 +12,14 @@
             <span :class="{cwhite:breadContentarr[0]==item.meta}">{{item.meta}}</span>
             <i class="el-icon-arrow-down" :class="{roate180:index==vindex}"></i>
           </div>
-          <transition
+          <!-- <transition
             @enter="enter"
             @afterEnter="afterEnter"
             @leave="leave"
             @afterLeave="afterLeave"
-          >
+          > -->
+
+          <hetransition>
             <ul class="onvueheight" v-show="index==vindex">
               <router-link
                 v-for="(initem,vndex) in item.children"
@@ -27,7 +29,8 @@
                 :to="initem.path"
               >{{initem.name}}</router-link>
             </ul>
-          </transition>
+          </hetransition>  
+          <!-- </transition> -->
         </li>
       </ul>
     </div>

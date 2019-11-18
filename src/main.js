@@ -8,6 +8,8 @@ import {
   Col,Card,Drawer,Dialog,MessageBox,Form,
   FormItem,Option,
 } from 'element-ui';
+import Global from './common/js/global'
+
 
 
 Vue.prototype.$msgbox = MessageBox;
@@ -19,6 +21,7 @@ Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 
 Vue.config.productionTip = false
+Vue.use(Global)
 Vue.use(Button)
 Vue.use(Select)
 Vue.use(breadcrumb)
