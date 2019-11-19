@@ -4,17 +4,18 @@
 			<el-row :gutter="3" type="flex" align="middle" >
 			  <el-col :span="3"><h2>请输入文章标题</h2></el-col>
 			  <el-col :span="15"><el-input  placeholder="请输入文章标题"></el-input></el-col>
+			  <el-col :span="6" style="text-align: right;"><el-button type="primary" style="width:70px;" @click="publish">上传</el-button></el-col>
+			</el-row>
+			<el-row>
+				<el-checkbox v-model="checked">备选项</el-checkbox>
 			</el-row>
 		</el-card>	
-		<div class="editor">
+		<div class="editor" >
 			<div ref="toolbar" class="toolbar">
 			</div>
 			<div ref="editor" class="text">
 			</div>
 		</div>
-		<el-row style="margin: 20px 0;" type="flex" justify="end">
-			<el-button type="primary" style="width: 270px;" @click="publish">发布</el-button>
-		</el-row>
 	 </div>
 </template>
 
@@ -63,8 +64,23 @@
 	      this.editor.txt.html(this.value)
 	    },
 	    methods: {
+			oneditordown(e){
+				  console.log(e);
+				  if(e.keyCode == "32"){
+					  return false;
+				  }
+			},
 		  publish(){
 			console.log(this.editor.txt.text())
+			let text = this.editor.txt.text();
+			let temp = document.createElement("div");
+            temp.innerHTML = text;
+            let output = temp.innerText || temp.textContent;
+			output = output.replace(/\s*/g,""); //去除字符串所有的空格
+            if(output.length){
+                return;
+			}
+
 			console.log(this.editor.txt.html())  
 		  },	
 	      seteditor() {

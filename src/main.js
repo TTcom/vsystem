@@ -3,9 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './common/css/reset.scss'
+import './common/css/index.scss'
 import { 
   breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination,Row,Input,
-  Col,Card,Drawer,Dialog,MessageBox,Form,
+  Col,Card,Drawer,Dialog,MessageBox,Form,Radio,
+  RadioGroup,
+  RadioButton,
   FormItem,Option,
 } from 'element-ui';
 import Global from './common/js/global'
@@ -39,7 +42,9 @@ Vue.use(Dialog)
 Vue.use(Form);
 Vue.use(FormItem);
 Vue.use(Option);
-
+Vue.use(Radio);
+Vue.use(RadioGroup);
+Vue.use(RadioButton);
 
 new Vue({
   router,

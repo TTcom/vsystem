@@ -221,6 +221,7 @@ export default {
       overflow: auto;
       flex-grow: 1;
       height: 0;
+      padding-bottom:20px;
     }
   }
 }

@@ -12,16 +12,20 @@
 					width="70">
 				  </el-table-column>
 				  <el-table-column
-					prop="name"
-					label="文章标题"
+					prop="createTime"
+					label="创建时间"
 					>
 				  </el-table-column>
 				  <el-table-column
-					prop="sex"
-					label="上传时间"
+					prop="creatorName"
+					label="创建人"
+					>
+				  </el-table-column>
+				  <el-table-column
+					label="是否发布"
 					>
 					<template slot-scope="{row}">
-						{{row.sex == 1 ? '男' : '女'}}
+						{{row.isPublish == 1 ? '已发布' : row.isPublish == 2 ? '审核拒绝' : '未发布' }}
 					</template>
 				  </el-table-column>
 				  <el-table-column
@@ -30,9 +34,28 @@
 					>
 				  </el-table-column>
 				  <el-table-column
-					prop="email"
-					label="更新时间"
+					prop="reason"
+					label="审核原因"
 					>
+				  </el-table-column>
+				  <el-table-column
+					label="状态"
+					>
+					<template slot-scope="{row}">
+						{{row.isPublish == 1 ? '正常' : '删除' }}
+					</template>
+				  </el-table-column>
+				  <el-table-column
+					prop="title"
+					label="title"
+					>
+				  </el-table-column>
+				  <el-table-column
+					label="操作"
+					>
+					<template slot-scope="{row}">
+							<span  style="color:#545eda;" @click.stop="onpolice(row)">审核</span>
+					</template>
 				  </el-table-column>
 				</el-table>
 				<el-row>
@@ -45,27 +68,54 @@
 							</el-pagination>
 					</el-col>
 				</el-row>
-	  
-				<!-- <el-drawer
-				  title="用户详情"
+				
+				  <el-dialog
+					title="文章审核"
+					:visible.sync="dialogVisible"
+					width="40%"
+					>
+					<el-row>
+					<el-form ref="form"  label-width="auto">
+							<el-form-item label="是否发布">
+									<el-radio v-model="iscroos" label="1">审核成功</el-radio>
+                                    <el-radio v-model="iscroos" label="2">拒绝发布</el-radio>
+							</el-form-item>
+                            <el-form-item label="拒绝原因" v-if="iscroos=='2'">
+									<el-input v-model="noreason" placeholder="请输入内容"></el-input>
+							</el-form-item>
+
+					</el-form>
+
+				</el-row>
+					<span slot="footer" class="dialog-footer">
+						<el-button @click="dialogVisible = false">取 消</el-button>
+						<el-button type="primary" :loading="isonpolice" :disabled="isonpolice" @click="sure">{{isonpolice ? '审核中' : '确 定'}}</el-button>
+					</span>
+					</el-dialog>
+				<el-drawer
+				  title="文章详情"
 				  :visible.sync="drawer"
 				  :direction="direction"
 				  :size="size"
 				  >
-				  <Userdetail :userobj="userobj"></Userdetail>
-				</el-drawer> -->
+				  <Articledetail :articleobj = "articleobj"></Articledetail>
+				</el-drawer>
 		</div>
 	  </template>
 	  <script>
-		  import {GetarticleList} from 'common/api/article'
-		  import Userdetail from 'components/user/userdetail'
+		  import Api from 'common/api/article'
+		  import Articledetail from './articledetail'
 		  export default{
 			  components:{
-				  Userdetail
+				Articledetail
 			  },
 			  data(){
 				  return{
-					  size:"45%",
+					  isonpolice:false,
+					  iscroos:'1',
+					  noreason:'',
+					  dialogVisible:false,
+					  size:"80%",
 					  userobj:{},
 					  dialogVisible: false,
 					  drawer: false,
@@ -73,7 +123,8 @@
 					  articleData:[],
 					  pageNum:1,
 					  pageSize:10,
-					  total:15
+					  total:15,
+					  articleobj:''
 				  }
 			  },
 			  created(){
@@ -83,36 +134,56 @@
 			  
 			  },
 			  methods:{
-				   
+				  onpolice(row){
+					  console.log("row",row)
+					this.dialogVisible= true;
+					this.policeid = row.id
+				  },
+				  sure(){
+					 console.log(this.iscroos,);
+					 if(this.iscroos=="2" && !this.noreason){
+						 this.$message.error("原因不可为空")
+						  return;
+					 }
+					 let params = {
+							id:this.policeid,
+							isPublish:this.iscroos,
+							reason:this.noreason
+					 }
+					 this.isonpolice = true;
+					 Api.policearticle(params).then(res=>{
+						  console.log(res);
+						  this.$message.success("审核成功");
+						  this.isonpolice = false;
+						  this.policeid='';
+						  this.noreason='';
+						  this.dialogVisible= false;
+					 })
+
+				  },
 				  getuserdetail(row){
 					  console.log(row);
-					  this.userobj = row;
+					  this.articleobj = row;
 					  this.drawer = true
 					  
 					  
-					  // MessageBox.confirm(`Do you really want to delete ${row.name} ?`,
-					  //         "Confirmation",
-					  //         {
-					  //           confirmButtonText: "OK",
-					  //           cancelButtonText: "Cancel",
-					  //           type: "warning"
-					  //         })
 				  },
 					handleCurrentChange(val) {
 					  console.log(`当前页: ${val}`);
-					  
-					  this.getUselist(val)
+					  this.pageNum = val;
+					  this.getarticleList();
+
 					  
 					},
-					getarticleList(pageNum){
+					getarticleList(){
 						let params = {
 							page:this.pageNum,
 							pageSize:this.pageSize
 						}
-						GetarticleList(params).then(res=>{
+						Api.getarticleList(params).then(res=>{
 							console.log(res);
-							// this.userData = res.data.data;
-							// this.total = res.data.totalSize;
+							this.articleData = res.data.data;
+							this.total = res.data.totalSize;
 						});
 						
 						

@@ -27,10 +27,10 @@ const routes = [
 				component: () => import('../components/article/articleList.vue'),
 			},
 			{
-				path: "/article/writeArticle",
+				path: "/article/quilledit",
 				name: "文章发布",
 				meta: "文章管理-文章发布",
-				component: () => import('../components/article/writeArticle.vue'),
+				component: () => import('../components/article/quilledit.vue'),
 			},
 
 		]

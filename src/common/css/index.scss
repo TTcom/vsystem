@@ -1,0 +1,12 @@
+.el-drawer__body{
+    height: 100%;
+    overflow-y: auto;
+}
+.el-drawer__header{
+    box-shadow: 0 3px 4px rgba(0,0,0,0.1);
+    z-index: 88;
+    margin: 0;
+    padding: 0 15px;
+    height: 55px;
+    line-height: 55px;
+}

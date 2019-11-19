@@ -1,7 +1,7 @@
 <template>
 	<div class="userdetail">
 		<el-card class="box-card">
-			<el-form ref="form" :model="userobj" label-width="80px">
+			<el-form ref="form" :model="userobj" label-width="auto">
 				<el-row>
 					<el-col :span="12">
 						<el-form-item label="姓名">
@@ -38,7 +38,7 @@
 		props: {
 			userobj: {
 				type: Object,
-				default: ()=> {return {}}
+				default: ()=>{return {}}
 			}
 		},
 		data(){
