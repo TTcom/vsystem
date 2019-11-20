@@ -84,7 +84,7 @@
 			goOut(){
 				loginOut().then(res=>{
 					console.log(res);
-					if(res.data.code == 0){
+					if(res.code == 0){
 						this.$message({showClose: true,message: '退出成功', type: 'success'});
 						this.$router.push('/')
 					}else{

@@ -7,18 +7,11 @@
       </h2>
       <ul>
         <li v-for="(item,index) in systemarr" :key="index">
-          <div class="lititle paddingleft cur" @click="ontitleli(index)">
-            <i class="el-icon-tickets"></i>
-            <span :class="{cwhite:breadContentarr[0]==item.meta}">{{item.meta}}</span>
+          <div class="lititle paddingleft cur" @click="ontitleli(index)" :class="{cwhite:breadContentarr[0]==item.meta}">
+            <i class="lefticon" :class="geticon(index)"></i>
+            <span>{{item.meta}}</span>
             <i class="el-icon-arrow-down" :class="{roate180:index==vindex}"></i>
           </div>
-          <!-- <transition
-            @enter="enter"
-            @afterEnter="afterEnter"
-            @leave="leave"
-            @afterLeave="afterLeave"
-          > -->
-
           <hetransition>
             <ul class="onvueheight" v-show="index==vindex">
               <router-link
@@ -30,7 +23,6 @@
               >{{initem.name}}</router-link>
             </ul>
           </hetransition>  
-          <!-- </transition> -->
         </li>
       </ul>
     </div>
@@ -66,7 +58,8 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["breadContentarr"])
+    ...mapGetters(["breadContentarr"]),
+    
   },
   created() {
     let { routes } = this.$router.options;
@@ -99,6 +92,22 @@ export default {
     }, 1 * 60 * 1000);
   },
   methods: {
+    geticon(index){
+      switch (index) {
+        case 0:
+          return "el-icon-tickets"
+          break;
+        case 1:
+          return "el-icon-user"
+          break;
+        case 2:
+          return "el-icon-bell"
+          break;  
+        default:
+          return "el-icon-picture-outline-round"
+          break;
+      }
+    },
     ontitleli(index) {
       if (index == this.vindex) {
         this.vindex = -1;
@@ -146,6 +155,9 @@ export default {
   background: #f0f2f5;
   width: 100%;
   user-select: none;
+  .cwhite {
+          color: white;
+        }
   .left {
     width: 280px;
     background: #272626;
@@ -173,7 +185,7 @@ export default {
       }
       .lititle {
         position: relative;
-        .el-icon-tickets {
+        .lefticon{
           position: absolute;
           left: 20px;
           top: 15px;
@@ -189,9 +201,7 @@ export default {
           transition: all 0.3s;
           transform: rotateX(180deg);
         }
-        .cwhite {
-          color: white;
-        }
+        
       }
       .paddingleft {
         padding-left: 50px;

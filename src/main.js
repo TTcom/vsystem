@@ -6,7 +6,7 @@ import './common/css/reset.scss'
 import './common/css/index.scss'
 import { 
   breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination,Row,Input,
-  Col,Card,Drawer,Dialog,MessageBox,Form,Radio,
+  Col,Card,Drawer,Dialog,MessageBox,Form,Radio,Upload,
   RadioGroup,
   RadioButton,
   FormItem,Option,
@@ -45,6 +45,7 @@ Vue.use(Option);
 Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(RadioButton);
+Vue.use(Upload);
 
 new Vue({
   router,

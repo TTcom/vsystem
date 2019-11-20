@@ -1,17 +1,22 @@
 <template>
     <div class="quilledit">
             <el-card class="box-card" >
-                    <el-row :gutter="3" type="flex" align="middle" >
-                      <el-col :span="3"><h2>请输入文章标题</h2></el-col>
+                    <el-row :gutter="3" type="flex" align="middle" class="elrow">
+                      <el-col :span="2"><h3>文章标题</h3></el-col>
                       <el-col :span="15"><el-input  placeholder="请输入文章标题"></el-input></el-col>
-                      <el-col :span="6" style="text-align: right;"><el-button type="primary" style="width:70px;" @click="publish">上传</el-button></el-col>
+                      <el-col :span="6" style="text-align: right;"><el-button type="primary" style="width:80px;" @click="publish">上传</el-button></el-col>
                     </el-row>
+                    <el-row :gutter="3" type="flex" align="middle" class="elrow">
+                      <el-col :span="2"><h3>文章摘要</h3></el-col>
+                      <el-col :span="15"><el-input  placeholder="请输入文章摘要"></el-input></el-col>
+                      </el-row>
+                  
                     <el-row>
                         <!-- <el-checkbox v-model="checked">备选项</el-checkbox> -->
                     </el-row>
                 </el-card>	
         <!-- 图片上传组件辅助-->
-      <!-- <el-upload
+      <el-upload
         class="avatar-uploader"
         :action="serverUrl"
         name="img"
@@ -20,7 +25,7 @@
         :on-success="uploadSuccess"
         :on-error="uploadError"
         :before-upload="beforeUpload">
-      </el-upload> -->
+      </el-upload>
 
         <quill-editor 
         class="editor"
@@ -165,6 +170,9 @@ export default {
 </script> 
 
 <style>
+  .elrow{
+    margin-bottom: 10px;
+  }
 .editor {
   line-height: normal !important;
   background-color: white;
