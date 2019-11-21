@@ -1,5 +1,44 @@
 <template>
 		<div class="articleList">
+			<el-card style = "margin-bottom: 10px;">
+				<el-form :model="selectmodel">
+						<el-form-item label="文章标题">
+							<el-input v-model="selectmodel.title" size="small"></el-input>
+						</el-form-item>
+						<el-form-item label="文章状态">
+								<el-select v-model="selectmodel.status" placeholder="请选择" clearable>
+									<el-option
+										label="否"
+										value=0>
+									</el-option>
+									<el-option
+										label="是"
+										value=1>
+									</el-option>
+								</el-select>
+						</el-form-item>
+						<el-form-item label="是否发布">
+								<el-select v-model="selectmodel.isPublish" placeholder="请选择" clearable>
+										<el-option
+											key="0"
+											label="否"
+											value=0>
+									</el-option>
+									<el-option
+										key="1"
+										label="是"
+										value=1>
+									</el-option>
+									  </el-select>
+						</el-form-item>
+						<el-form-item label="创建人名">
+								<el-input v-model="selectmodel.creatorName" size="small"></el-input>
+						</el-form-item>
+						<div class="searchbtn">
+							<el-button type="primary" size="small" @click="onsearch">搜索</el-button>  
+						</div>
+				</el-form>
+			</el-card>
 			  <el-table
 				  :data="articleData"
 				  stripe
@@ -111,6 +150,12 @@
 			  },
 			  data(){
 				  return{
+					  selectmodel:{
+                         title:'',
+						 status:'',
+						 isPublish:'',
+						 creatorName:''
+					  },
 					  isonpolice:false,
 					  iscroos:'1',
 					  noreason:'',
@@ -128,12 +173,16 @@
 				  }
 			  },
 			  created(){
-				  this.getarticleList(this.pageNum)
+				  this.getarticleList(this.pageNum);
 			  },
 			  mounted() {
 			  
 			  },
 			  methods:{
+				onsearch(){
+					console.log(this.selectmodel.status);
+					this.getarticleList('form')
+				},
 				  onpolice(row){
 					  console.log("row",row)
 					this.dialogVisible= true;
@@ -175,8 +224,16 @@
 
 					  
 					},
-					getarticleList(){
+					getarticleList(type){
+						if(type=="form"){
+							this.pageNum=1;
+						}
+						let {selectmodel}  = this.$data;
 						let params = {
+							title:selectmodel.title,
+							status:selectmodel.status,
+							isPublish:selectmodel.isPublish,
+							creatorName:selectmodel.creatorName,
 							page:this.pageNum,
 							pageSize:this.pageSize
 						}
