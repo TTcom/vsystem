@@ -4,7 +4,7 @@
 			<div class="container" v-show="isdata" @keyup.enter="login">
 				 <h2>Welcome to the new world</h2> 
 				 <div class="signinput">
-					 <input type="text"  placeholder="your name" id="username" v-model="username">
+					 <input type="text"  placeholder="your name" id="username" v-model="username" @change="inputchange">
 				 </div>
 				 <div class="signinput">
 					 <input type="password"  placeholder="your password" v-model="password">
@@ -40,6 +40,13 @@
 			},250)
 		},
 		methods:{
+			inputchange(){
+                    console.log(this.username);
+					let user = JSON.parse(localStorage.getItem('vsys_user'));
+					if(user && user.account==this.username){
+						this.password = user.password
+					}
+			},
 			login(){
 				if(!this.usertest()){
 					return;
@@ -56,7 +63,8 @@
 					
 					if(res.code == 0){
 						this.$message({showClose: true,message: '登录成功', type: 'success'});
-						localStorage.setItem('vsys_token',res.data)
+						localStorage.setItem('vsys_user',JSON.stringify(params));
+						localStorage.setItem('vsys_token',res.data);
 						this.$router.push('/article')
 					}else{
 						this.$message({
