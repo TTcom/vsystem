@@ -19,7 +19,7 @@
       <el-upload
         class="avatar-uploader"
         :action="serverUrl"
-        name="img"
+        name="file"
         :headers="header"
         :show-file-list="false"
         :on-success="uploadSuccess"
@@ -111,10 +111,10 @@ export default {
           }
         }
       },
-      serverUrl: "/v1/blog/imgUpload", // 这里写你要上传的图片服务器地址
+      serverUrl: "/common/upload", // 这里写你要上传的图片服务器地址
       header: {
-        // token: sessionStorage.token
-      } // 有的图片服务器要求请求头需要有token
+        AccessToken:localStorage.getItem('vsys_token')
+      } 
     };
   },
 
@@ -142,15 +142,16 @@ export default {
     },
 
     uploadSuccess(res, file) {
-      // res为图片服务器返回的数据
-      // 获取富文本组件实例
+
+      console.log(res,file)
+     
       let quill = this.$refs.myQuillEditor.quill;
       // 如果上传成功
-      if (res.code == 200) {
+      if (res.code == 0) {
         // 获取光标所在位置
         let length = quill.getSelection().index;
         // 插入图片  res.url为服务器返回的图片地址
-        quill.insertEmbed(length, "image", res.url);
+        quill.insertEmbed(length, "image", res.data.fileLocate);
         // 调整光标到最后
         quill.setSelection(length + 1);
       } else {

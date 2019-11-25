@@ -1,3 +1,14 @@
 import {doPost} from '../utils/axios'
 
-export const getUserList =(params)=>doPost({url:'queryUserInfoListByCondition',data:params})
+export default{
+    getUserList(params){
+        return  doPost({url:'queryUserInfoListByCondition',data:params});
+    }, 
+    getuserdetail(params){
+        return doPost({url:'queryUserInfoByCondition',data:params})
+    },
+    policeuser(params){
+        return doPost({url:'authUserInfoByCondition',data:params})
+    }
+     
+}

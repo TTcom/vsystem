@@ -70,7 +70,7 @@
   </div>
 </template>
 <script>
-	import {getUserList} from 'common/api/usermanner'
+	import API from 'common/api/usermanner'
     import Userdetail from 'components/user/userdetail'
 	export default{
 		components:{
@@ -122,7 +122,7 @@
 				  	page:pageNum,
 				  	pageSize:this.pageSize
 				  }
-				  getUserList(params).then(res=>{
+				  API.getUserList(params).then(res=>{
 				  	console.log(res);
 				  	this.userData = res.data.data;
 				  	this.total = res.data.totalSize;

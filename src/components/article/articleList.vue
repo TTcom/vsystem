@@ -189,7 +189,7 @@
 					this.policeid = row.id
 				  },
 				  sure(){
-					 console.log(this.iscroos,);
+					 console.log(this.iscroos);
 					 if(this.iscroos=="2" && !this.noreason){
 						 this.$message.error("原因不可为空")
 						  return;
