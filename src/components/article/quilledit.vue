@@ -27,13 +27,20 @@
         :before-upload="beforeUpload">
       </el-upload>
 
-        <quill-editor 
+        <!-- <quill-editor 
         class="editor"
         v-model="content"
         ref="myQuillEditor" 
-        :options="editorOption" 
+        :options="options" 
         @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
         @change="onEditorChange($event)">
+        </quill-editor> -->
+        <quill-editor 
+        class="editor"
+        
+        ref="myQuillEditor" 
+        :options="editorOption" 
+        >
         </quill-editor>
     </div>
 </template>
@@ -86,10 +93,11 @@ export default {
         placeholder: "",
         theme: "snow", // or 'bubble'
         placeholder: "您想说点什么？",
+        readOnly: true,
         modules: {
           toolbar: {
             container: toolbarOptions,
-            // container: "#toolbar",
+            
             handlers: {
               image: function(value) {
                 if (value) {
@@ -120,8 +128,9 @@ export default {
 
   methods: {
     publish(){
-        let quill = this.$refs.myQuillEditor.quill;
-          console.log(quill.getContents());
+       let quillcontent = this.$refs.myQuillEditor.quill;
+          console.log(quillcontent.getContents());
+          
 
     }, 
     onEditorBlur() {

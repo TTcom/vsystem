@@ -24,6 +24,7 @@ Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
 
+
 Vue.config.productionTip = false
 Vue.use(Global)
 Vue.use(Button)

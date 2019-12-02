@@ -1,18 +1,18 @@
 <template>
 		<div class="articleList">
 			<el-card style = "margin-bottom: 10px;">
-				<el-form :model="selectmodel">
+				<el-form :model="selectmodel" :inline="true">
 						<el-form-item label="文章标题">
 							<el-input v-model="selectmodel.title" size="small"></el-input>
 						</el-form-item>
 						<el-form-item label="文章状态">
 								<el-select v-model="selectmodel.status" placeholder="请选择" clearable>
 									<el-option
-										label="否"
+										label="删除"
 										value=0>
 									</el-option>
 									<el-option
-										label="是"
+										label="正常"
 										value=1>
 									</el-option>
 								</el-select>
@@ -21,13 +21,18 @@
 								<el-select v-model="selectmodel.isPublish" placeholder="请选择" clearable>
 										<el-option
 											key="0"
-											label="否"
+											label="未发布"
 											value=0>
 									</el-option>
 									<el-option
 										key="1"
-										label="是"
+										label="已发布"
 										value=1>
+									</el-option>
+									<el-option
+										key="2"
+										label="审核拒绝"
+										value=2>
 									</el-option>
 									  </el-select>
 						</el-form-item>
@@ -81,7 +86,7 @@
 					label="状态"
 					>
 					<template slot-scope="{row}">
-						{{row.isPublish == 1 ? '正常' : '删除' }}
+						{{row.status == 1 ? '正常' : '删除' }}
 					</template>
 				  </el-table-column>
 				  <el-table-column
@@ -114,14 +119,15 @@
 					width="40%"
 					>
 					<el-row>
-					<el-form ref="form"  label-width="auto">
+					<el-form ref="form"  label-width="80px">
 							<el-form-item label="是否发布">
 									<el-radio v-model="iscroos" label="1">审核成功</el-radio>
                                     <el-radio v-model="iscroos" label="2">拒绝发布</el-radio>
 							</el-form-item>
-                            <el-form-item label="拒绝原因" v-if="iscroos=='2'">
-									<el-input v-model="noreason" placeholder="请输入内容"></el-input>
+                            <el-form-item label="拒绝原因" v-if="iscroos=='2'" style="display: block;">
+									<el-input v-model="noreason" placeholder="请输入内容" style="width: 100%;"></el-input>
 							</el-form-item>
+							
 
 					</el-form>
 
@@ -136,6 +142,7 @@
 				  :visible.sync="drawer"
 				  :direction="direction"
 				  :size="size"
+				  
 				  >
 				  <Articledetail :articleobj = "articleobj"></Articledetail>
 				</el-drawer>
@@ -168,7 +175,7 @@
 					  articleData:[],
 					  pageNum:1,
 					  pageSize:10,
-					  total:15,
+					  total:0,
 					  articleobj:''
 				  }
 			  },

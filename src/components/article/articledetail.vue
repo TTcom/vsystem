@@ -45,7 +45,14 @@
                     <el-row>
 						<el-col :span="24">
 							<el-form-item label="文章内容">
-                                {{articleobj.content}}
+								
+								<quill-editor 
+								class="editor"
+								disabled
+								ref="myQuillEditor" 
+								:options="editorOption" 
+								>
+								</quill-editor>
 							</el-form-item>
 						</el-col>
 					</el-row>
@@ -55,6 +62,8 @@
 </template>
 
 <script>
+	import { quillEditor } from "vue-quill-editor";
+    import quill from 'quill'
 	export default {
 		props: {
 			articleobj: {
@@ -62,11 +71,68 @@
 				default: ()=>{return {}}
 			}
 		},
-		data(){
-			return{
+		components: {
+			quillEditor
+		},
+		watch: {
+			articleobj:{
+				handler(newval,oldval){
+				
+					console.log(newval,oldval);
+				    this.insertcontent(newval)
+				},
+				immediate:true,
+				deep:true
 				
 			}
-		}
+		},
+		data(){
+			return{
+				editorOption: {
+				placeholder: "",
+				theme: "bubble", // or 'bubble'
+				placeholder: "",
+				readOnly: true,
+				modules: {
+				  toolbar: ''
+				}
+			  }
+			}
+		},
+		mounted() {
+			let quillcontent = this.$refs.myQuillEditor.quill;
+			
+			if(!this.articleobj){
+				return
+			}else{
+				try {
+					JSON.parse(this.articleobj.content)
+				} catch (error) {
+					console.log(error);
+					return false
+				}
+				quillcontent.setContents(JSON.parse(this.articleobj.content));
+			}
+			
+		},
+		methods: {
+			insertcontent(newval){
+				console.log(newval);
+				if(!this.$refs.myQuillEditor) return;
+				if(!newval) return;
+				let quillcontent = this.$refs.myQuillEditor.quill;
+				quillcontent.setContents([]);
+				try {
+					JSON.parse(newval.content)
+				} catch (error) {
+					console.log(error);
+					return false
+				}
+
+				quillcontent.setContents(JSON.parse(newval.content));
+				
+			}
+		},
 	}
 </script>
 
