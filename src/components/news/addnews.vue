@@ -46,12 +46,16 @@
           console.log('newval',newval)
           if(newval){
             this.model= cloneDeep(this.obj); // 把父组件传递的属性拷贝
+           
           }else{
             this.model = {
                 name: '',
                 content: '',
                 type: ''
             }
+          }
+          if(this.$refs['ruleForm']){
+            this.$refs['ruleForm'].resetFields();
           }
 				},
 				immediate:true,
@@ -62,7 +66,7 @@
     },
     methods: {
        add() {
-
+        
         this.$refs['ruleForm'].validate(async (valid) => {
          
           if (valid) {

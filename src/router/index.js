@@ -25,7 +25,7 @@ const routes = [
 				name: "文章列表",
 				meta: "文章管理-文章列表",
 				component: () => import('../components/article/articleList.vue'),
-			},
+			},			
 			{
 				path: "/article/quilledit",
 				name: "文章发布",
@@ -71,7 +71,28 @@ const routes = [
 
 		]
 	},
+	{
+		path: '/patent',
+		component: () => import('../views/main.vue'),
+		meta: "专利管理",
+		children: [
+			{
+				path: "/patent/patentList",
+				name: "专利列表",
+				meta: "专利管理-专利列表",
+				component: () => import('../components/patent/patentList.vue'),
+			},
+			{
+				path: "/patent/userpatentList",
+				name: "用户专利列表",
+				meta: "用户专利管理-用户专利列表",
+				component: () => import('../components/patent/userpatentList.vue'),
+			}
 
+
+
+		]
+	},
 
 ]
 

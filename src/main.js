@@ -10,7 +10,7 @@ import {
   Radio,Upload,
   RadioGroup,
   RadioButton,
-  FormItem,Option,
+  FormItem,Option,Popover,Popconfirm
 } from 'element-ui';
 import Global from './common/js/global'
 
@@ -48,7 +48,8 @@ Vue.use(Radio);
 Vue.use(RadioGroup);
 Vue.use(RadioButton);
 Vue.use(Upload);
-
+Vue.use(Popover);
+Vue.use(Popconfirm);
 new Vue({
   router,
   store,

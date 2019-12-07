@@ -14,5 +14,8 @@ export default{
      updateMessgeByCondition (params){
         return doPost({url:'updateMessgeByCondition ',data:params})
      },
+     sendMessge (params){
+      return doPost({url:'sendMessge ',data:params})
+   },
     
 } 

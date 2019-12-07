@@ -3,12 +3,12 @@
             <el-card class="box-card" >
                     <el-row :gutter="3" type="flex" align="middle" class="elrow">
                       <el-col :span="2"><h3>文章标题</h3></el-col>
-                      <el-col :span="15"><el-input  placeholder="请输入文章标题"></el-input></el-col>
+                      <el-col :span="15"><el-input v-model="articletitle"  placeholder="请输入文章标题"></el-input></el-col>
                       <el-col :span="6" style="text-align: right;"><el-button type="primary" style="width:80px;" @click="publish">上传</el-button></el-col>
                     </el-row>
                     <el-row :gutter="3" type="flex" align="middle" class="elrow">
                       <el-col :span="2"><h3>文章摘要</h3></el-col>
-                      <el-col :span="15"><el-input  placeholder="请输入文章摘要"></el-input></el-col>
+                      <el-col :span="15"><el-input  v-model='articleimportant' placeholder="请输入文章摘要"></el-input></el-col>
                       </el-row>
                   
                     <el-row>
@@ -87,6 +87,8 @@ export default {
 
   data() {
     return {
+      articletitle:'',
+      articleimportant:'',
       content: this.value,
       quillUpdateImg: false, // 根据图片上传状态来确定是否显示loading动画，刚开始是false,不显示
       editorOption: {

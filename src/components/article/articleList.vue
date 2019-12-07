@@ -34,7 +34,7 @@
 										label="审核拒绝"
 										value=2>
 									</el-option>
-									  </el-select>
+								</el-select>
 						</el-form-item>
 						<el-form-item label="创建人名">
 								<el-input v-model="selectmodel.creatorName" size="small"></el-input>
@@ -59,6 +59,9 @@
 					prop="createTime"
 					label="创建时间"
 					>
+					<template slot-scope="{row}">
+                       {{ $fliterTime(row.createTime)}}
+					</template>
 				  </el-table-column>
 				  <el-table-column
 					prop="creatorName"
@@ -99,6 +102,7 @@
 					>
 					<template slot-scope="{row}">
 							<span  style="color:#545eda;" @click.stop="onpolice(row)">审核</span>
+							<span  style="color:#545eda;margin: 0 10px;" @click.stop="seecomment(row)">查看评论</span>
 					</template>
 				  </el-table-column>
 				</el-table>
@@ -138,25 +142,30 @@
 					</span>
 					</el-dialog>
 				<el-drawer
-				  title="文章详情"
+				  :title="title"
 				  :visible.sync="drawer"
 				  :direction="direction"
 				  :size="size"
-				  
+				  @closed="success"
 				  >
-				  <Articledetail :articleobj = "articleobj"></Articledetail>
+				  <component :is="cpn" :articleobj = "articleobj"></component>
+				  <!-- <Articledetail :articleobj = "articleobj"></Articledetail> -->
 				</el-drawer>
 		</div>
 	  </template>
 	  <script>
 		  import Api from 'common/api/article'
 		  import Articledetail from './articledetail'
+		  import articleCommentList from './articleCommentList'
 		  export default{
 			  components:{
-				Articledetail
+				Articledetail,
+				articleCommentList
 			  },
 			  data(){
 				  return{
+					  title:'文章详情',
+					  cpn:'',
 					  selectmodel:{
                          title:'',
 						 status:'',
@@ -186,6 +195,19 @@
 			  
 			  },
 			  methods:{
+				success(){
+                    this.cpn = '',
+					this.drawer = false;
+				},
+				seecomment(row){
+				   console.log('row',row);
+					this.cpn = 'articleCommentList',
+					this.title = '评论列表'
+					this.articleobj = row;
+					this.drawer = true
+					
+
+				},  
 				onsearch(){
 					console.log(this.selectmodel.status);
 					this.getarticleList('form')
@@ -219,6 +241,7 @@
 				  },
 				  getuserdetail(row){
 					  console.log(row);
+					  this.cpn = 'Articledetail',
 					  this.articleobj = row;
 					  this.drawer = true
 					  

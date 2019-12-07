@@ -30,9 +30,6 @@ export const doPost = (config)=>{
 		let abc =  JSON.parse(JSON.stringify(err));
 		Vue.prototype.$message.error(`系统异常-${abc.message}`);
 	});
-	
-
-	
 	return instance(config)
 }
 

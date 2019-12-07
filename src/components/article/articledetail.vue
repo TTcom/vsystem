@@ -65,12 +65,7 @@
 	import { quillEditor } from "vue-quill-editor";
     import quill from 'quill'
 	export default {
-		props: {
-			articleobj: {
-				type: Object,
-				default: ()=>{return {}}
-			}
-		},
+		props: ['articleobj'],
 		components: {
 			quillEditor
 		},

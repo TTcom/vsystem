@@ -46,11 +46,9 @@ export default {
     return {
       vindex: -1,
       titlearr: [
-        "浪子回头",
+        "完美===我",
         "Keep Walk",
-        "不再回头",
-        "再见昨天",
-        "为了明天",
+        "Best wish",
         "为了信仰"
       ],
       title: "",

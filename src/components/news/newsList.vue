@@ -40,8 +40,23 @@
       </el-table-column>
       <el-table-column prop="updateTime" label="操作">
         <template slot-scope="{row}">
-              <span @click="deletmessage(row)" style="color: red;margin-right: 15px;">删除</span>
-              <span @click="edit(row)" style="color:#66b1ff;">编辑</span>
+            
+          <el-popconfirm
+            placement="top"
+            width="220"
+            type="danger"
+            okType="danger"
+            okText="删除"
+            title="将会删除该条目下所有数据，确定要删除吗？"
+            icon="el-icon-info"
+            iconColor="red"
+            @onConfirm="deletmessage(row)"
+            @onCancel="row.visible = false"
+          >
+             <span slot="reference" style="color: red;margin-right: 15px;">删除</span> 
+          </el-popconfirm>
+           <span @click="edit(row)" style="color:#66b1ff;margin-right: 15px;">编辑</span>
+           <span @click="onsendMessage(row)" style="color:#66b1ff;">发送</span>
         </template>
       </el-table-column>
     </el-table>
@@ -53,20 +68,25 @@
       </el-col>
     </el-row>
 
-    <el-drawer :title=title :visible.sync="drawer" :direction="direction" :size="size" :before-close="success">
-        <Addnews @success="success" :isedit="isedit" :editId="editId" :obj="obj"></Addnews>
+    <el-drawer :title=title :visible.sync="drawer" :direction="direction" :size="size"  @closed="success">
+
+        <component :is="cpn" @success="success" :isedit="isedit" :editId="editId" :obj="obj"></component>
+
     </el-drawer>
   </div>
 </template>
 <script>
   import Api from 'common/api/news'
   import Addnews from './addnews.vue'
+  import sendMessage from './sendMessage.vue'
   export default {
     components: {
-      Addnews
+      Addnews,
+      sendMessage
     },
     data() {
       return {
+        cpn:'',
         title:"",
         obj:'',
         editId:'',
@@ -93,7 +113,15 @@
 
     },
     methods: {
+      onsendMessage(row){
+            this.cpn = "sendMessage"
+            this.title="发送消息"
+            this.drawer = true;
+            this.obj=row;
+            this.size = '60%'
+      },
       edit(row){
+            this.cpn = "Addnews"
             this.title="修改消息"
             this.editId = row.id;
             this.isedit = true;
@@ -110,8 +138,10 @@
       },
       success(){
         this.drawer = false;
+        this.cpn = ""
         this.editId = '';
         this.isedit = false;
+        this.size = '45%'
         this.onsearch();
       },
       onsearch(){
@@ -122,6 +152,7 @@
 
       },
       addnews() {
+        this.cpn = "Addnews"
         this.title="新建消息"
         this.drawer = true
       },
@@ -139,6 +170,9 @@
         }
         Api.getnewsList(params).then(res => {
           console.log(res);
+          res.data.data.forEach(element => {
+            element.visible = false;
+          });
           this.newsData = res.data.data;
           this.total = res.data.totalSize;
         });
