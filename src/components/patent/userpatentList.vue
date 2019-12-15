@@ -41,12 +41,11 @@
             <el-table-column prop="reason" label="审核原因">
             </el-table-column>
             
-            <!-- <el-table-column prop="updateTime" label="操作">
+            <el-table-column prop="updateTime" label="操作">
               <template slot-scope="{row}">
-                    <span @click="deletmessage(row)" style="color: red;margin-right: 15px;">删除</span>
-                    <span @click="edit(row)" style="color:#66b1ff;">编辑</span>
-              </template>
-            </el-table-column> -->
+                    <span @click="examine(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;">审核</span>
+                </template>
+            </el-table-column>
         </el-table>
         <el-row>
             <el-col :span="24" style="text-align: right;background: white;">
@@ -56,9 +55,31 @@
             </el-col>
         </el-row>
 
-        <!-- <el-drawer :title=title :visible.sync="drawer" :direction="direction" :size="size" :before-close="success">
-              <Addnews @success="success" :isedit="isedit" :editId="editId" :obj="obj"></Addnews>
-          </el-drawer> -->
+        <el-dialog
+            title="用户专利审核"
+            :visible.sync="dialogVisible"
+            width="40%"
+            >
+            <el-row>
+            <el-form ref="form"  label-width="80px">
+                    <el-form-item label="是否发布">
+                            <el-radio v-model="iscroos" label="0">待审核</el-radio>
+                            <el-radio v-model="iscroos" label="1">审核通过</el-radio>
+                            <el-radio v-model="iscroos" label="3">拒绝</el-radio>
+                    </el-form-item>
+                    <el-form-item label="审核原因" style="display: block;">
+                            <el-input v-model="croosreason" placeholder="请输入内容" style="width: 100%;"></el-input>
+                    </el-form-item>
+                    
+
+            </el-form>
+
+        </el-row>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="sure">保存</el-button>
+            </span>
+            </el-dialog>
     </div>
 </template>
 <script>
@@ -68,6 +89,9 @@
 
         data() {
             return {
+                croosreason:'',
+                dialogVisible:false,
+                iscroos:'0',
                 title: "",
                 obj: '',
                 editId: '',
@@ -77,13 +101,13 @@
                 },
                 size: "45%",
                 userobj: {},
-                dialogVisible: false,
                 drawer: false,
                 direction: 'rtl',
                 patentData: [],
                 pageNum: 1,
                 pageSize: 10,
-                total: 15
+                total: 15,
+                patentId:''
             }
         },
         created() {
@@ -94,6 +118,31 @@
 
         },
         methods: {
+            sure(){
+                     let params = {
+                            id:this.examineid,
+                            patentId:this.patentId,
+							reason:this.croosreason,
+							status:this.iscroos
+					 }
+					 Api.updateUserPatentByCodition(params).then(res=>{
+                          console.log(res);
+                          if (res.code == 0) {
+						  this.$message.success("审核成功");
+						  this.croosreason='';
+						  this.iscroos='0';
+                          this.dialogVisible= false;
+                          }else {
+                                this.$message.error(res.msg)
+                             }
+					 })
+                
+            },
+            examine(row){
+                this.examineid = row.id;
+                this.patentId = row.patentId
+                this.dialogVisible = true;  
+            },
             edit(row) {
                 this.title = "修改消息"
                 this.editId = row.id;

@@ -100,18 +100,6 @@
 				default: ()=>{return {}}
 			}
 		},
-		watch: {
-			userobj:{
-				handler(newval,oldval){
-					this.userdetail={};
-					console.log(newval,oldval);
-				    this.getuserdetail(newval.id)
-				},
-				immediate:true,
-				deep:true
-				
-			}
-		},
 		data(){
 			return{
 				dialogVisible:false,
@@ -122,10 +110,12 @@
 				policeid:''
 			}
 		},
+		mounted(){
+			this.getuserdetail(this.userobj.id);
+		},
 		methods: {
 			sure(){
-					
-					 
+
 					 let params = {
 							id:this.policeid,
 							certStatus:this.iscroos,
@@ -175,6 +165,7 @@
 		 height: 188px;
 	 }
 	 .el-form-item__content{
+		    width: 188px;
 			line-height: 0 !important;
 		 }
 	 margin-bottom:30px;

@@ -7,7 +7,10 @@ export default{
      },
      getUserpatentList(params){
         return doPost({url:'queryUserPatentListByCondition',data:params})
-    },
+     },
+     updateUserPatentByCodition(params){
+        return doPost({url:'updateUserPatentByCodition ',data:params})
+     },
 
 
     

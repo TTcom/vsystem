@@ -47,6 +47,13 @@
 			  label="邮箱"
 			  >
 			</el-table-column>
+			<el-table-column
+				label="操作"
+				>
+				<template slot-scope="{row}">
+						<span  style="color:#545eda;" @click.stop="addpatent(row)">增加专利</span>
+				</template>
+			</el-table-column>
           </el-table>
 		  <el-row>
 		  	<el-col :span="24" style="text-align: right;background: white;">
@@ -60,24 +67,29 @@
 		  </el-row>
 
 		  <el-drawer
-		    title="用户详情"
+		    :title="title"
 		    :visible.sync="drawer"
 			:direction="direction"
 			:size="size"
-		    >
-		    <Userdetail :userobj="userobj"></Userdetail>
+			@closed="success"
+			>
+			<component :is="cpn" :userobj="userobj"></component>
 		  </el-drawer>
   </div>
 </template>
 <script>
 	import API from 'common/api/usermanner'
-    import Userdetail from 'components/user/userdetail'
+	import Userdetail from './userdetail'
+	import Adduserpatent from './adduserpatent'
 	export default{
 		components:{
-			Userdetail
+			Userdetail,
+			Adduserpatent
 		},
 		data(){
 			return{
+				title:'',
+				cpn:'',
 				size:"45%",
 				userobj:{},
 				dialogVisible: false,
@@ -96,20 +108,27 @@
 		
 		},
 		methods:{
-			 
+			success(){
+				console.log(123)
+                    this.cpn = '',
+					this.drawer = false;
+			},
+			addpatent(row){     
+				this.title = "增加用户专利"   
+				this.size = '60%'
+                this.userobj = row;
+				this.drawer = true
+				this.cpn = 'Adduserpatent'
+			},
 			getuserdetail(row){
 				console.log(row);
+				this.size = '45%'
+				this.title = "用户详情"   
 				this.userobj = row;
 				this.drawer = true
+				this.cpn = 'Userdetail'
 				
 				
-				// MessageBox.confirm(`Do you really want to delete ${row.name} ?`,
-				//         "Confirmation",
-				//         {
-				//           confirmButtonText: "OK",
-				//           cancelButtonText: "Cancel",
-				//           type: "warning"
-				//         })
 			},
 			  handleCurrentChange(val) {
 				console.log(`当前页: ${val}`);

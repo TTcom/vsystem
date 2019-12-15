@@ -11,10 +11,21 @@
               
             </div>
         </el-form>
-      </el-card>
+      </el-card> -->
       <div style="margin-bottom: 10px;">
-        <el-button type="primary" size="small" @click="addnews">新建消息</el-button>
-      </div> -->
+          <el-upload
+            class="upload-demo"
+            action="/downloadTemplate"
+            :headers="header"
+            :before-upload="beforeAvatarUpload"
+            :show-file-list="false"
+            @on-success="filesuccess"
+            multiple
+            >
+            <el-button size="small" type="primary">点击上传</el-button>
+            <div slot="tip" class="el-upload__tip">只能上传csv文件</div>
+        </el-upload>
+      </div>
       
       <el-table :data="patentData" stripe border style="width: 100%;cursor: pointer;">
         <el-table-column type="index" label="序号" width="70">
@@ -88,7 +99,10 @@
           patentData: [],
           pageNum: 1,
           pageSize: 10,
-          total: 15
+          total: 15,
+          header: {
+        AccessToken:localStorage.getItem('vsys_token')
+      } 
         }
       },
       created() {
@@ -99,6 +113,18 @@
   
       },
       methods: {
+        filesuccess(){
+          this.$message.success('上传成功');
+        },
+        beforeAvatarUpload(file) {
+          // const iscsv = file.type === 'csv';
+
+          // if (!isJPG) {
+          //   this.$message.error('上传文件只能是 csv 格式!');
+          // }
+          // return isJPG;
+          return true;
+        },
         edit(row){
               this.title="修改消息"
               this.editId = row.id;
