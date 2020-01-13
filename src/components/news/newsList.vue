@@ -1,10 +1,6 @@
 <template>
   <div class="articleList">
-    <el-row style="margin-bottom: 20px;">
-      <el-col :span="6">
-        
-      </el-col>
-    </el-row>
+
     <el-card style = "margin-bottom: 10px;">
       <el-form :model="selectmodel" :inline="true">
           <el-form-item label="消息标题">
@@ -20,7 +16,12 @@
       <el-button type="primary" size="small" @click="addnews">新建消息</el-button>
     </div>
     
-    <el-table :data="newsData" stripe border style="width: 100%;cursor: pointer;">
+    <el-table :data="newsData" stripe border style="width: 100%;cursor: pointer;"
+    v-loading="$isShowLoading"
+			element-loading-text="拼命加载中"
+			element-loading-spinner="el-icon-loading"
+			element-loading-background="rgba(255, 255, 255,0.8)"
+    >
       <el-table-column type="index" label="序号" width="70">
       </el-table-column>
       <el-table-column prop="name" label="消息名称">

@@ -33,7 +33,7 @@
 							<el-form-item label="图片1" class="forimg">
 									<img :class="{img:userdetail.certBackUrl}" :src="userdetail.certBackUrl"/>
 									<div class="policeimg" @click="topolice(userdetail.id)" v-if="userdetail.certBackUrl">
-                                         <span>审核</span>
+                                         <span>一起对三个图片审核</span>
 									</div>
 									
 							</el-form-item>
@@ -41,9 +41,9 @@
 						<el-col :span="12">
 								<el-form-item label="图片2" class="forimg">
 										<img  :class="{img:userdetail.certHandUrl}" :src="userdetail.certHandUrl"/>
-										<div class="policeimg" @click="topolice(userdetail.id)" v-if="userdetail.certHandUrl">
+										<!-- <div class="policeimg" @click="topolice(userdetail.id)" v-if="userdetail.certHandUrl">
                                          <span>审核</span>
-									   </div>
+									   </div> -->
 								</el-form-item>
 						</el-col>
 						
@@ -52,9 +52,9 @@
 						<el-col :span="12">
 							<el-form-item label="图片3" class="forimg">
 									<img :class="{img:userdetail.portraitImgUrl}" :src="userdetail.portraitImgUrl"/>
-									<div class="policeimg" @click="topolice(userdetail.id)" v-if="userdetail.portraitImgUrl">
+									<!-- <div class="policeimg" @click="topolice(userdetail.id)" v-if="userdetail.portraitImgUrl">
                                          <span>审核</span>
-									</div>
+									</div> -->
 							</el-form-item>
 						</el-col>
 						

@@ -46,6 +46,10 @@
 			</el-card>
 			  <el-table
 				  :data="articleData"
+				  v-loading="$isShowLoading"
+				  element-loading-text="拼命加载中"
+				  element-loading-spinner="el-icon-loading"
+				  element-loading-background="rgba(255, 255, 255,0.8)"
 				  stripe
 				  border
 				  @row-click="getuserdetail"
@@ -103,6 +107,7 @@
 					<template slot-scope="{row}">
 							<span  style="color:#545eda;" @click.stop="onpolice(row)">审核</span>
 							<span  style="color:#545eda;margin: 0 10px;" @click.stop="seecomment(row)">查看评论</span>
+							
 					</template>
 				  </el-table-column>
 				</el-table>
@@ -189,10 +194,11 @@
 				  }
 			  },
 			  created(){
-				  this.getarticleList(this.pageNum);
+				  console.log(this.$fliterTime(615913200000))
+				this.getarticleList(this.pageNum);
 			  },
 			  mounted() {
-			  
+				 
 			  },
 			  methods:{
 				success(){
@@ -205,8 +211,6 @@
 					this.title = '评论列表'
 					this.articleobj = row;
 					this.drawer = true
-					
-
 				},  
 				onsearch(){
 					console.log(this.selectmodel.status);
@@ -255,6 +259,7 @@
 					  
 					},
 					getarticleList(type){
+						console.log(this.$isShowLoading)
 						if(type=="form"){
 							this.pageNum=1;
 						}
@@ -271,7 +276,7 @@
 							console.log(res);
 							this.articleData = res.data.data;
 							this.total = res.data.totalSize;
-						});
+						})
 						
 						
 					},

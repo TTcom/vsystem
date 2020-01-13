@@ -3,7 +3,7 @@ import {doPost} from '../utils/axios'
 export default{
 
      getnewsList(params){
-         return doPost({url:'queryMessageListByCondition',data:params})
+         return doPost({url:'queryMessageListByCondition',data:params},true)
      },
      createMessge(params){
         return doPost({url:'createMessge',data:params})

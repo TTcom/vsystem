@@ -65,7 +65,7 @@
 						this.$message({showClose: true,message: '登录成功', type: 'success'});
 						localStorage.setItem('vsys_user',JSON.stringify(params));
 						localStorage.setItem('vsys_token',res.data);
-						this.$router.push('/article')
+						this.$router.push('/file')
 					}else{
 						this.$message({
 						  showClose: true,

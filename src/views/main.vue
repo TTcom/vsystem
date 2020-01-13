@@ -46,10 +46,12 @@ export default {
     return {
       vindex: -1,
       titlearr: [
-        "完美===我",
+        "我不累",
         "Keep Walk",
         "Best wish",
-        "为了信仰"
+        "我叫就是干",
+        "扶我起来",
+        "我还爱你"
       ],
       title: "",
       systemarr: []
@@ -93,12 +95,15 @@ export default {
     geticon(index){
       switch (index) {
         case 0:
-          return "el-icon-tickets"
+          return "el-icon-setting"
           break;
         case 1:
-          return "el-icon-user"
+          return "el-icon-tickets"
           break;
         case 2:
+          return "el-icon-user"
+          break;
+        case 3:
           return "el-icon-bell"
           break;  
         default:
@@ -152,7 +157,6 @@ export default {
   justify-content: flex-start;
   background: #f0f2f5;
   width: 100%;
-  user-select: none;
   .cwhite {
           color: white;
         }

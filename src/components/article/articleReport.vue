@@ -21,7 +21,7 @@
                         {{ $fliterTime(row.updateTime)}} 
                     </template>
                 </el-table-column>
-          <el-table-column prop="updateTime" label="操作">
+          <!-- <el-table-column prop="updateTime" label="操作">
             <template slot-scope="{row}">
                 
               <el-popconfirm
@@ -37,7 +37,7 @@
               </el-popconfirm>
                <span @click="examine(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;">审核</span>
             </template>
-          </el-table-column>
+          </el-table-column> -->
             </el-table>
 
             <el-row>
@@ -49,11 +49,10 @@
             </el-row>
 
         </el-card>
-        <el-dialog
+        <!-- <el-dialog
             title="文章评论审核"
             :visible.sync="dialogVisible"
             width="40%"
-            :append-to-body="true"
             >
             <el-row>
             <el-form ref="form"  label-width="80px">
@@ -74,14 +73,14 @@
                 <el-button @click="dialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="sure">保存</el-button>
             </span>
-            </el-dialog>
+            </el-dialog> -->
     </div>
 </template>
 
 <script>
     import Api from 'common/api/article'
     export default {
-        props: ['articleobj', 'reportid','isnocommentId'],
+        props: ['articleobj'],
         data() {
             return {
                 croosreason:'',
@@ -95,46 +94,8 @@
             }
         },
         methods: {
-            sure(){
-                     let params = {
-							id:this.examineid,
-							authReason:this.croosreason,
-							status:this.iscroos
-					 }
-					 Api.authArticleCommonReportByCondition(params).then(res=>{
-                          console.log(res);
-                          if (res.code == 0) {
-						  this.$message.success("审核成功");
-						  this.croosreason='';
-						  this.iscroos=1;
-                          this.dialogVisible= false;
-                          }else {
-                                this.$message.error(res.msg)
-                             }
-					 })
-                
-            },
-            examine(row){
-                this.examineid = row.id;
-                this.dialogVisible = true;  
-            },
-            deletmessage(row){
-                 
-                console.log(row);
-                Api.deleteArticleCommonReportByCondition({id: row.id}).then(res => {
-                console.log(res);
-                if (res.code == 0) {
-                    this.$message.success('删除成功');
-                    this.pageNum = 1;
-                    this.getarticleList();
-                }else {
-                        this.$message.error(res.msg)
-                    }
+       
 
-
-                });   
-
-            },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
                 this.pageNum = val;
@@ -142,15 +103,10 @@
 
             },
             getarticleList() {
-                let commentId;
-                if(this.isnocommentId){
-                    commentId = ''
-                }else{
-                    commentId = this.reportid
-                }
+
                 let params = {
                     articleId: this.articleobj.id,
-                    commentId: commentId,
+                    commentId: this.reportid,
                     status:this.articleobj.status,
                     page: this.pageNum,
                     pageSize: this.pageSize

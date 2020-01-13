@@ -6,7 +6,7 @@ import './common/css/reset.scss'
 import './common/css/index.scss'
 import { 
   breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination,Row,Input,
-  Col,Card,Drawer,Dialog,MessageBox,Form,
+  Col,Card,Drawer,Dialog,MessageBox,Form,Loading,
   Radio,Upload,
   RadioGroup,
   RadioButton,
@@ -14,8 +14,7 @@ import {
 } from 'element-ui';
 import Global from './common/js/global'
 
-
-
+Vue.use(Loading.directive);
 Vue.prototype.$msgbox = MessageBox;
 Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$confirm = MessageBox.confirm;
@@ -23,7 +22,7 @@ Vue.prototype.$prompt = MessageBox.prompt;
 
 Vue.prototype.$message = Message;
 Vue.prototype.$confirm = MessageBox.confirm;
-
+Vue.prototype.$isShowLoading = false;
 
 Vue.config.productionTip = false
 Vue.use(Global)

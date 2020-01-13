@@ -1,8 +1,9 @@
 const path = require('path');
+const webpack = require('webpack')
   function resolve (dir) {
     return path.join(__dirname, dir)
 }
-
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports={
 	devServer: {
@@ -21,6 +22,26 @@ module.exports={
 			  }
 			}
 	},
+	configureWebpack: {
+        //关闭 webpack 的性能提示
+  //       performance: {
+  //           hints: false
+  //       },
+		
+		plugins: [
+			new UglifyJsPlugin({
+				uglifyOptions: {
+				  compress: {
+					drop_console: true,
+					pure_funcs: ['console.log']
+				  }
+				},
+			  }),
+		  // Ignore all locale files of moment.js
+		  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)       //忽略 moment 的本地化内容
+		]
+		
+    },
 	publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 	chainWebpack: (config)=>{
 	   config.resolve.alias

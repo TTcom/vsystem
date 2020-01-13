@@ -1,11 +1,45 @@
 <template>
   <div class="userList">
+	  <div>
+		<el-form :model="selectmodel" :inline="true">
+				<el-card style = "margin-bottom: 10px;">
+					<el-form-item label="认证状态">
+						<el-select v-model="selectmodel.status" placeholder="请选择" clearable>
+							<el-option
+								label="全部"
+								value=''>
+							</el-option>
+							<el-option
+								label="已认证"
+								value=1>
+							</el-option>
+							<el-option
+								label="认证失败"
+								value=2>
+							</el-option>
+							<el-option
+								label="未认证"
+								value=3>
+							</el-option>
+						</el-select>
+					</el-form-item>
+					<div class="searchbtn">
+						<el-button type="primary" size="small" @click="onsearch">搜索</el-button>  
+					  </div>
+				</el-card>
+			</el-form> 		
+	  </div>
         <el-table
             :data="userData"
             stripe
 			border
 			@row-click="getuserdetail"
-            style="width: 100%;cursor: pointer;">
+			style="width: 100%;cursor: pointer;"
+			v-loading="$isShowLoading"
+			element-loading-text="拼命加载中"
+			element-loading-spinner="el-icon-loading"
+			element-loading-background="rgba(255, 255, 255,0.8)"
+			>
 			<el-table-column
 			  type="index"
 			  label="序号"
@@ -98,16 +132,23 @@
 				userData:[],
 				pageNum:1,
 				pageSize:10,
-				total:15
+				total:15,
+				selectmodel:{
+					status:''
+				}
 			}
 		},
 		created(){
-			this.getUselist(this.pageNum)
+			this.getUselist()
 		},
 		mounted() {
 		
 		},
 		methods:{
+			onsearch(){
+                this.pageNum = 1;
+                this.getUselist(this.selectmodel.status);
+            },
 			success(){
 				console.log(123)
                     this.cpn = '',
@@ -132,13 +173,14 @@
 			},
 			  handleCurrentChange(val) {
 				console.log(`当前页: ${val}`);
-				
-				this.getUselist(val)
+				this.pageNum = val;
+				this.getUselist()
 				
 			  },
-			  getUselist(pageNum){
+			  getUselist(status){
 				  let params = {
-				  	page:pageNum,
+					certStatus:status,
+				  	page:this.pageNum,
 				  	pageSize:this.pageSize
 				  }
 				  API.getUserList(params).then(res=>{

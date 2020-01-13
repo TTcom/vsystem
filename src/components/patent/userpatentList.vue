@@ -1,22 +1,27 @@
 <template>
     <div class="patent">
 
-        <!-- <el-card style = "margin-bottom: 10px;">
+        <!-- 
+          <div style="margin-bottom: 10px;">
+            <el-button type="primary" size="small" @click="addnews">新建消息</el-button>
+          </div> -->
+          <el-card style = "margin-bottom: 10px;">
             <el-form :model="selectmodel" :inline="true">
-                <el-form-item label="消息标题">
+                <el-form-item label="专利名称">
                   <el-input v-model="selectmodel.title" size="small"></el-input>
                 </el-form-item>
                 <div class="searchbtn">
                   <el-button type="primary" size="small" @click="onsearch">搜索</el-button>  
-                  
                 </div>
             </el-form>
           </el-card>
-          <div style="margin-bottom: 10px;">
-            <el-button type="primary" size="small" @click="addnews">新建消息</el-button>
-          </div> -->
 
-        <el-table :data="patentData" stripe border style="width: 100%;cursor: pointer;">
+        <el-table :data="patentData" stripe border style="width: 100%;cursor: pointer;"
+            v-loading="$isShowLoading"
+			element-loading-text="拼命加载中"
+			element-loading-spinner="el-icon-loading"
+			element-loading-background="rgba(255, 255, 255,0.8)"
+        >
             <el-table-column type="index" label="序号" width="70">
             </el-table-column>
             <el-table-column prop="patentId" label="专利id">
@@ -77,7 +82,7 @@
         </el-row>
             <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="sure">保存</el-button>
+                <el-button type="primary" @click="sure" :loading="isSureLoading">保存</el-button>
             </span>
             </el-dialog>
     </div>
@@ -107,7 +112,9 @@
                 pageNum: 1,
                 pageSize: 10,
                 total: 15,
-                patentId:''
+                patentId:'',
+                userID:'',
+                isSureLoading:false
             }
         },
         created() {
@@ -118,12 +125,18 @@
 
         },
         methods: {
+            onsearch(){
+                this.pageNum = 1;
+                this.getpatentList(this.selectmodel.title);
+            },
             sure(){
+                     this.isSureLoading = true;
                      let params = {
                             id:this.examineid,
                             patentId:this.patentId,
 							reason:this.croosreason,
-							status:this.iscroos
+							status:this.iscroos,
+                            userId:this.userID
 					 }
 					 Api.updateUserPatentByCodition(params).then(res=>{
                           console.log(res);
@@ -135,12 +148,15 @@
                           }else {
                                 this.$message.error(res.msg)
                              }
-					 })
+					 }).finally(()=>{
+                         this.isSureLoading = false;
+                     })
                 
             },
             examine(row){
                 this.examineid = row.id;
-                this.patentId = row.patentId
+                this.patentId = row.patentId;
+                this.userID = row.userId;
                 this.dialogVisible = true;  
             },
             edit(row) {
@@ -183,7 +199,7 @@
             },
             getpatentList(name) {
                 let params = {
-                    name: name,
+                    patentName:name,
                     page: this.pageNum,
                     pageSize: this.pageSize
                 }

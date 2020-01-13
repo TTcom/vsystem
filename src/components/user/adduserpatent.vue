@@ -1,7 +1,12 @@
 !<template>
   <div class="adduserpatent">
     <el-table :data="patentData" stripe border highlight-current-row
-    @current-change="tablehandleCurrentChange" style="width: 100%;cursor: pointer;">
+    @current-change="tablehandleCurrentChange" style="width: 100%;cursor: pointer;"
+      v-loading="isShowLoading"
+      element-loading-text="拼命加载中"
+      element-loading-spinner="el-icon-loading"
+      element-loading-background="rgba(255, 255, 255,0.8)"
+    >
         <el-table-column type="index" label="序号" width="70">
         </el-table-column>
         <el-table-column prop="name" label="专利名称">
@@ -58,7 +63,8 @@ export default {
           pageNum: 1,
           pageSize: 10,
           total: 15,
-          currentRow: null
+          currentRow: null,
+          isShowLoading:false,
     }
   },
   created() {
@@ -76,6 +82,7 @@ export default {
   
         },
     getpatentList(name) {
+      this.isShowLoading = true;
           let params = {
             name:name,
             page: this.pageNum,
@@ -83,6 +90,7 @@ export default {
           }
           Api.getpatentList(params).then(res => {
             console.log(res);
+            this.isShowLoading = false;
             this.patentData = res.data.data;
             this.total = res.data.totalSize;
           });

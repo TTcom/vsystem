@@ -10,6 +10,27 @@ const routes = [
 		component: () => import('../views/sign.vue')
 	},
 	{
+		path: '/file',
+		component: () => import('../views/main.vue'),
+		meta: "文件管理",
+		children: [
+			{
+				path: "/",
+				redirect: '/file/fileConfig',
+				meta: "文件管理-文件配置",
+				component: () => import('../components/file/fileConfig.vue'),
+			},
+			{
+				path: "/file/fileConfig",
+				name: "文件配置",
+				meta: "文件管理-文件配置",
+				component: () => import('../components/file/fileConfig.vue'),
+			},		
+			
+
+		]
+	},
+	{
 		path: '/article',
 		component: () => import('../views/main.vue'),
 		meta: "文章管理",

@@ -27,7 +27,12 @@
         </el-upload>
       </div>
       
-      <el-table :data="patentData" stripe border style="width: 100%;cursor: pointer;">
+      <el-table :data="patentData" stripe border style="width: 100%;cursor: pointer;"
+      v-loading="$isShowLoading"
+			element-loading-text="拼命加载中"
+			element-loading-spinner="el-icon-loading"
+			element-loading-background="rgba(255, 255, 255,0.8)"
+      >
         <el-table-column type="index" label="序号" width="70">
         </el-table-column>
         <el-table-column prop="name" label="专利名称">
@@ -101,8 +106,8 @@
           pageSize: 10,
           total: 15,
           header: {
-        AccessToken:localStorage.getItem('vsys_token')
-      } 
+             AccessToken:localStorage.getItem('vsys_token')
+          } 
         }
       },
       created() {
