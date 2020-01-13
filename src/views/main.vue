@@ -1,19 +1,19 @@
 <template>
   <div class="main">
-    <div class="left">
+    <div class="left" :class="{leftw70:isFoldLeft}">
       <h2>
-        <img class="veralimiddle" src="../common/img/robot.svg" />
+        <img class="veralimiddle" src="../common/img/robot.svg" @click="isFoldLeft = !isFoldLeft"/>
         <span class="veralimiddle">{{title}}</span>
       </h2>
       <ul>
         <li v-for="(item,index) in systemarr" :key="index">
-          <div class="lititle paddingleft cur" @click="ontitleli(index)" :class="{cwhite:breadContentarr[0]==item.meta}">
-            <i class="lefticon" :class="geticon(index)"></i>
+          <div class="lititle paddingleft cur" @click="ontitleli(index)" :class="{cwhite:breadContentarr[0]==item.meta,paddingleft70:isFoldLeft}">
+            <i class="lefticon" :class="geticon(index)" @click="isFoldLeft = false"></i>
             <span>{{item.meta}}</span>
-            <i class="el-icon-arrow-down" :class="{roate180:index==vindex}"></i>
+            <i class="el-icon-arrow-down" :class="{roate180:index==vindex}" v-show="isShowAllContent"></i>
           </div>
           <hetransition>
-            <ul class="onvueheight" v-show="index==vindex">
+            <ul class="onvueheight" v-show="index==vindex && isShowAllContent">
               <router-link
                 v-for="(initem,vndex) in item.children"
                 :key="vndex"
@@ -44,6 +44,8 @@ export default {
   },
   data() {
     return {
+      isFoldLeft:false,
+      isShowAllContent:true,
       vindex: -1,
       titlearr: [
         "我不累",
@@ -56,6 +58,23 @@ export default {
       title: "",
       systemarr: []
     };
+  },
+  watch: {
+    isFoldLeft(value){
+          if(!value){
+             this.isShowAllContentTimer = setTimeout(()=>{
+                 this.isShowAllContent = true
+             },300)
+          }else{
+            this.isShowAllContent = false
+          }
+
+    }
+  },
+  destroyed() {
+    if(this.isShowAllContentTimer){
+         clearTimeout(this.isShowAllContentTimer);
+    }
   },
   computed: {
     ...mapGetters(["breadContentarr"]),
@@ -162,7 +181,9 @@ export default {
         }
   .left {
     width: 280px;
+    overflow: hidden;
     background: #272626;
+    transition: all .5s;
     h2 {
       text-align: left;
       padding-left: 15px;
@@ -170,6 +191,8 @@ export default {
       height: 64px;
       line-height: 64px;
       background: black;
+      overflow: hidden;
+      white-space: nowrap;
       img {
         width: 40px;
         margin-right: 30px;
@@ -184,12 +207,13 @@ export default {
         line-height: 45px;
         color: hsla(0, 0%, 100%, 0.65);
         transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        white-space: nowrap;
       }
       .lititle {
         position: relative;
         .lefticon{
           position: absolute;
-          left: 20px;
+          left: 26px;
           top: 15px;
         }
         .el-icon-arrow-down {
@@ -206,8 +230,12 @@ export default {
         
       }
       .paddingleft {
-        padding-left: 50px;
+        padding-left:55px;
       }
+      .paddingleft70 {
+        padding-left:70px;
+      }
+
       .tab-item {
         cursor: pointer;
       }
@@ -217,6 +245,10 @@ export default {
         background-image: linear-gradient(to right, black, white);
       }
     }
+  }
+  .leftw70{
+    width: 70px;
+    
   }
   .onright {
     flex-grow: 1;
