@@ -48,6 +48,7 @@
 					}
 			},
 			login(){
+			
 				if(!this.usertest()){
 					return;
 				}
@@ -67,7 +68,7 @@
 						localStorage.setItem('vsys_token',res.data);
 						this.$router.push('/file')
 					}else{
-						this.$message({
+						this.$errorMessage({
 						  showClose: true,
 						  message: res.msg,
 						  type: 'error'

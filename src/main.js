@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './common/css/reset.scss'
 import './common/css/index.scss'
+import './permission'
 import { 
   breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination,Row,Input,
   Col,Card,Drawer,Dialog,MessageBox,Form,Loading,
@@ -13,6 +14,8 @@ import {
   FormItem,Option,Popover,Popconfirm
 } from 'element-ui';
 import Global from './common/js/global'
+import ErrorMessage from './base/error'
+
 
 Vue.use(Loading.directive);
 Vue.prototype.$msgbox = MessageBox;
@@ -21,6 +24,9 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 
 Vue.prototype.$message = Message;
+
+Vue.prototype.$errorMessage = ErrorMessage;
+
 Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$isShowLoading = false;
 
