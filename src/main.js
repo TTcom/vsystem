@@ -5,6 +5,8 @@ import store from './store'
 import './common/css/reset.scss'
 import './common/css/index.scss'
 import './permission'
+//import 'lib-flexible/flexible'
+
 import { 
   breadcrumbItem,Button, Select,Message,breadcrumb,table,tableColumn,pagination,Row,Input,
   Col,Card,Drawer,Dialog,MessageBox,Form,Loading,
