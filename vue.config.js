@@ -1,10 +1,11 @@
 const path = require('path');
 const webpack = require('webpack')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
   function resolve (dir) {
     return path.join(__dirname, dir)
 }
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const Timestamp = new Date().getTime();  //当前时间为了防止打包缓存不刷新，所以给每个js文件都加一个时间戳
 module.exports={
 	devServer: {
 			proxy: {         //服务器代理，解决前后端接口跨域问题
@@ -27,8 +28,15 @@ module.exports={
   //       performance: {
   //           hints: false
   //       },
-		
+		output: { // 输出重构  打包编译后的 文件名称  【模块名称.时间戳】
+			filename: `[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.js`,
+			chunkFilename: `[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.js`
+		},
 		plugins: [
+			new MiniCssExtractPlugin({
+                filename: `css/[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.css`,
+              //  chunkFilename: `css/[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.css`
+            }),
 			new UglifyJsPlugin({
 				uglifyOptions: {
 				  compress: {
