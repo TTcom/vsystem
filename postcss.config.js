@@ -5,7 +5,8 @@ module.exports = {
       },
       'postcss-pxtorem': {
         rootValue: 37.5,
-        propList: ['*']
+        propList: ['*'],
+        exclude: "element-ui|Front|manage|errorLog|errorPage|layout|login"
       }
     }
   }
