@@ -2,13 +2,34 @@
   <div id="app">
     
     <!-- <Rendertest></Rendertest> -->
-    <router-view/>
+    <dynamicComponent></dynamicComponent>
+    <!-- <router-view/> -->
   </div>
 </template>
 <script>
+   import dynamicComponent from './views/dynamicComponent'
+
+
+   export default{
+         components:{
+           dynamicComponent
+         },
+         data(){
+           return{
+              asdasdsa:213,
+              opp:'opppp'
+           }
+         },
+         methods:{
+           handle(){
+             console.log(123);
+             
+           }
+         }
+   }
   // import Rendertest from './views/rendertest.vue'
   // export default{
-  //        components:{
+  //        components:{n[m]
   //         Rendertest
   //        }
   // }
