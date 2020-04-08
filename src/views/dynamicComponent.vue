@@ -1,12 +1,15 @@
 <template>
   <div class="dynamic">
       <el-button type="primary" @click="handelclick">
-            {{str}}
+            {{str}} - name: {{name}} - age: {{age}}
       </el-button>
        <el-button type="info" @click="handelinfo">
             外面的大白杨
       </el-button>
-      
+      <el-button type="info" @click="onmm">
+            外面的
+      </el-button>
+      <WrappedComponent v-bind="$props" v-on="$listeners" @onmmll="mkk"></WrappedComponent>
   </div>  
 </template>
 
@@ -17,12 +20,26 @@ let  picker = WrappedComponent;
 
 export default {
     name:'dynamic',
+    props:['name','age'],
+    components:{
+        WrappedComponent
+    },
     data(){
         return{
             str:"a test component string"
         }
     },
+    mounted(){
+        console.log('props',this.$props)
+        console.log('attrs',this.$attrs)
+    },
     methods:{
+        mkk(){
+             console.log('mkk');
+        },
+        onmm(){
+            this.$emit('onmmll')
+        },
         handelinfo(){
           this.picker.$destroy();  
           console.log(this.picker);

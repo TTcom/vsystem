@@ -2,7 +2,7 @@
   <div>
     <span style="font-size:17px;color:blue;" @click="nums">{{num}}</span>
     <el-button type="primary" @click="handeltree">
-       有一棵树
+       有一棵树name: {{name}} - age: {{age}}
       </el-button>
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'BaseComponent',
+  props:['name','age'],
   data(){
       return{
           num:"opper"
@@ -18,6 +19,7 @@ export default {
   methods: {
     handeltree(){
       console.log('a tree')
+      this.$emit('onmmll')
     },  
     nums(){
         console.log(213412412);

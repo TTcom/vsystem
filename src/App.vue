@@ -2,7 +2,7 @@
   <div id="app">
     
     <!-- <Rendertest></Rendertest> -->
-    <dynamicComponent></dynamicComponent>
+    <dynamicComponent :name="name" :age="age" @onmmll="onmm" ></dynamicComponent>
     <!-- <router-view/> -->
   </div>
 </template>
@@ -17,10 +17,15 @@
          data(){
            return{
               asdasdsa:213,
-              opp:'opppp'
+              opp:'opppp',
+              name:"jack",
+              age:12
            }
          },
          methods:{
+           onmm(){
+             console.log('omm');
+           },
            handle(){
              console.log(123);
              
