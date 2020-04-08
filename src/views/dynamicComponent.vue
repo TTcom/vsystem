@@ -3,6 +3,10 @@
       <el-button type="primary" @click="handelclick">
             {{str}}
       </el-button>
+       <el-button type="info" @click="handelinfo">
+            外面的大白杨
+      </el-button>
+      
   </div>  
 </template>
 
@@ -19,6 +23,14 @@ export default {
         }
     },
     methods:{
+        handelinfo(){
+          this.picker.$destroy();  
+          console.log(this.picker);
+          const func = (date = '',visible = false)=>{
+              console.log(date,visible);
+          }
+          func();
+        },
         handelclick(){
             console.log(this.$el);
             this.picker = new Vue(picker).$mount();
