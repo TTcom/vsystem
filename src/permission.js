@@ -4,7 +4,7 @@ import 'nprogress/nprogress.css' // progress bar style
 
   NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-  NProgress.configure({ easing: 'ease', speed: 500 });
+  NProgress.configure({ easing: 'ease', speed: 300 });
 
 
 router.beforeEach((to, from, next) => {
