@@ -26,14 +26,12 @@
 <script>
 import dynamicComponent from "./views/dynamicComponent";
 import funcComponent from "./views/funcComponent";
-import Son from "./views/son";
 import _ from "lodash";
 
 export default {
   components: {
     dynamicComponent,
-    funcComponent,
-    Son
+    funcComponent
   },
   data() {
     return {
@@ -46,9 +44,9 @@ export default {
       age: 12
     }
   },
-  // created(){
-  //    console.log("created father")
-  // },
+  created(){
+     console.log(process.env.VUE_APP_API_URL)
+  },
   // beforeMount(){
   //    console.log("beforeMount father")
   // },
