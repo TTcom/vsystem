@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <Rendertest></Rendertest> -->
     <!-- <dynamicComponent :name="name" :age="age" @onmmll="onmm" ></dynamicComponent> -->
-    <!-- <router-view/> -->
+    <router-view />
 
     <!-- <funcComponent>
       <span @click="onmm">123456</span>
@@ -14,28 +14,26 @@
             <li v-for="item in items" v-bind:key="item">{{ item }}</li>
           </transition-group>
     </div>-->
-    <div class="onbox">
-          <transition name="bounce">
-          <div class="vbox">
+    <!-- <div class="onbox">
+          <transition name="lazy-component">
+          <div class="vbox" v-if="isCllose">
           </div>
            </transition>
     </div>
-    <el-button type="primary" @click="isCllose = !isCllose">主要按钮</el-button>
+    <el-button type="primary" @click="isCllose = !isCllose">主要按钮</el-button> -->
   </div>
 </template>
 <script>
-import dynamicComponent from "./views/dynamicComponent";
-import funcComponent from "./views/funcComponent";
-import _ from "lodash";
-
+//import dynamicComponent from "./views/dynamicComponent"
+//import funcComponent from "./views/funcComponent"
 export default {
   components: {
-    dynamicComponent,
-    funcComponent
+    // dynamicComponent,
+    // funcComponent
   },
   data() {
     return {
-      isShow:true,
+      isShow: true,
       isCllose: false,
       asdasdsa: 213,
       opp: "opppp",
@@ -44,8 +42,8 @@ export default {
       age: 12
     }
   },
-  created(){
-     console.log(process.env.VUE_APP_API_URL)
+  created() {
+    console.log(process.env.VUE_APP_API_URL)
   },
   // beforeMount(){
   //    console.log("beforeMount father")
@@ -56,21 +54,21 @@ export default {
   methods: {
     shuffle() {
       // this.items = _.shuffle(this.items);
-      let a = this.items[3];
-      let b = this.items[2];
-      this.items[2] = a;
-      this.items[3] = b;
-      console.log(this.items);
-      this.items = this.items.slice();
+      let a = this.items[3]
+      let b = this.items[2]
+      this.items[2] = a
+      this.items[3] = b
+      console.log(this.items)
+      this.items = this.items.slice()
     },
     onmm() {
-      console.log("omm");
+      console.log("omm")
     },
     handle() {
-      console.log(123);
+      console.log(123)
     }
   }
-};
+}
 // import Rendertest from './views/rendertest.vue'
 // export default{
 //        components:{n[m]
@@ -79,59 +77,55 @@ export default {
 // }
 </script>
 <style lang="scss">
+.onbox {
+  width: 300px;
+  height: 500px;
+  margin: auto;
+  //border: 1px solid black;
+  perspective: 500px;
+}
+.vbox {
+  width: 300px;
+  height: 200px;
+  background-color: red;
+}
+.lazy-component-enter {
+  //过渡的开始状态
+  opacity: 0;
+  margin-top: 200px;
+  transform: scale(0.4) translateY(100%) rotateX(45deg);
+}
+
+.lazy-component-enter-to {
+  //过渡的结束状态
+  opacity: 1;
+}
+
+.lazy-component-enter-active {
+  //过渡生效时的状态
+  transition: all 0.5s;
+  position: absolute;
+  top: 0;
+  width: 300px;
+}
+
+.lazy-component-leave {
+  opacity: 1;
+}
+
+.lazy-component-leave-to {
+  opacity: 0;
+  margin-top: 200px;
+  transform: scale(0.4) translateY(100%) rotateX(45deg);
+}
+
+.lazy-component-leave-active {
+  transition: all 0.5s;
+}
+
 #app {
   width: 100%;
   height: 100%;
   position: relative;
 }
-.monday {
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-top: 25px;
-}
-.onbox{
-  height: 300px;
-  border: 1px solid;
-  width: 500px;
-  position: relative;
-  overflow: hidden;
-  
-}
-.vbox{
-  transition: all .5s;
-  height: 100px;
-  width: 100px;
-  background-color: lightblue;
-  position: absolute;
-  left: 50%;
-  bottom:0px;
-  transform: rotateX(45deg);
-  // perspective-origin:50% center
-
-}
-
-// .bounce-enter-active {
-//   animation: bounce-in .5s;
-// }
-// .bounce-leave-active {
-//   animation: bounce-in .5s reverse;
-// }
-// @keyframes bounce-in {
-//   0% {
-//     transform: scale(0);
-//     bottom:-100px;
-//   }
-//   50% {
-//     transform: scale(1.5);
-//      bottom:-50px;
-//   }
-//   100% {
-//      transform: scale(1);
-//      bottom:0px;
-//   }
-// }
-
-
 </style>

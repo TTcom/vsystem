@@ -1,16 +1,14 @@
-import router from './router/index'
-import NProgress from 'nprogress' // progress bar
-import 'nprogress/nprogress.css' // progress bar style
+import router from "./router/index"
+import NProgress from "nprogress" // progress bar
+import "nprogress/nprogress.css" // progress bar style
 
-  NProgress.configure({ showSpinner: false }) // NProgress Configuration
+NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-  NProgress.configure({ easing: 'ease', speed: 300 });
-
+NProgress.configure({ easing: "ease", speed: 300 })
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
-  next();
-  
+  next()
 })
 
 router.afterEach(() => {

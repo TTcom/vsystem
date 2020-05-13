@@ -36,10 +36,6 @@ module.exports={
 			chunkFilename: `[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.js`
 		},
 		plugins: [
-			new MiniCssExtractPlugin({
-                filename: `css/[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.css`,
-              //  chunkFilename: `css/[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.css`
-            }),
 			new UglifyJsPlugin({
 				uglifyOptions: {
 				  compress: {
@@ -55,15 +51,21 @@ module.exports={
     },
 	publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 	chainWebpack: (config)=>{
-	   config.resolve.alias
-	       .set('src', resolve('src'))
-	       .set('components',resolve('src/components'))
-	       .set('common',resolve('src/common'))
-		   .set('base',resolve('src/base'))
-	
+	   
+		config.module
+            .rule("eslint")
+            .use("eslint-loader")
+            .loader("eslint-loader")
+            .tap(options => {
+                options.fix = true; //设置自动修复eslint
+                return options;
+            })  
+			config.resolve.alias
+			.set('src', resolve('src'))
+			.set('components',resolve('src/components'))
+			.set('common',resolve('src/common'))
+			.set('base',resolve('src/base'))
 	}, 
-	
-	
-	
+
 	
 }
