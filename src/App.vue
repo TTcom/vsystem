@@ -71,7 +71,6 @@ export default {
 }
 // import Rendertest from './views/rendertest.vue'
 // export default{
-//        components:{n[m]
 //         Rendertest
 //        }
 // }
@@ -81,7 +80,6 @@ export default {
   width: 300px;
   height: 500px;
   margin: auto;
-  //border: 1px solid black;
   perspective: 500px;
 }
 .vbox {
