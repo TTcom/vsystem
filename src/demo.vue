@@ -21,7 +21,6 @@ export default {
   },
   mounted() {
     var documentClientHeight = document.documentElement.clientHeight || window.innerHeight
-
     window.addEventListener("scroll", () => {
       //getBoundingClientRect()返回元素的大小及其相对于视口的位置。
       var vboxHeight = this.$refs.onbox.getBoundingClientRect().top
