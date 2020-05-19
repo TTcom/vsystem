@@ -1,5 +1,6 @@
 import Vue from "vue"
 import VueRouter from "vue-router"
+import Main from "../views/main.vue"
 
 Vue.use(VueRouter)
 
@@ -11,15 +12,10 @@ const routes = [
   },
   {
     path: "/file",
-    component: () => import("../views/main.vue"),
+    component: Main,
+    redirect: "/file/fileConfig",
     meta: "文件管理",
     children: [
-      {
-        path: "/",
-        redirect: "/file/fileConfig",
-        meta: "文件管理-文件配置",
-        component: () => import("../components/file/fileConfig.vue")
-      },
       {
         path: "/file/fileConfig",
         name: "文件配置",
@@ -30,15 +26,9 @@ const routes = [
   },
   {
     path: "/article",
-    component: () => import("../views/main.vue"),
+    component: Main,
     meta: "文章管理",
     children: [
-      {
-        path: "/",
-        redirect: "/article/articleList",
-        meta: "文章管理-文章列表",
-        component: () => import("../components/article/articleList.vue")
-      },
       {
         path: "/article/articleList",
         name: "文章列表",
@@ -55,7 +45,7 @@ const routes = [
   },
   {
     path: "/user",
-    component: () => import("../views/main.vue"),
+    component: Main,
     meta: "用户管理",
     children: [
       {
@@ -74,7 +64,7 @@ const routes = [
   },
   {
     path: "/news",
-    component: () => import("../views/main.vue"),
+    component: Main,
     meta: "消息管理",
     children: [
       {
@@ -87,7 +77,7 @@ const routes = [
   },
   {
     path: "/patent",
-    component: () => import("../views/main.vue"),
+    component: Main,
     meta: "专利管理",
     children: [
       {

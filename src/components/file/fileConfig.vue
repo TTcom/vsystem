@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import Api from "common/api/fileconfig"
+//import Api from "common/api/fileconfig"
 export default {
   data() {
     return {
@@ -79,10 +79,10 @@ export default {
   },
   methods: {
     downLawFile() {
-      window.location.href = `http://221.224.123.197:50003/downloadLawStatusTemplate?AccessToken=${localStorage.getItem("vsys_token")}`
+      //window.location.href = ``
     },
     downPatentFile() {
-      window.location.href = `http://221.224.123.197:50003/downloadPatentTemplate?AccessToken=${localStorage.getItem("vsys_token")}`
+      // window.location.href = ``
     },
 
     filesuccess() {
@@ -93,18 +93,18 @@ export default {
       this.getQueryPatentTypeList()
     },
     getQueryPatentTypeList() {
-      Api.getQueryPatentTypeList().then(res => {
-        console.log("res", res)
-        this.patentlist = res.data
-      })
+      // Api.getQueryPatentTypeList().then(res => {
+      //   console.log("res", res)
+      //   this.patentlist = res.data
+      // })
     },
     getQueryImportPatentType() {
-      Api.getQueryImportPatentType().then(res => {
-        console.log("tType", res)
-        if (res.code == 0) {
-          this.nowpatentType = res.data
-        }
-      })
+      // Api.getQueryImportPatentType().then(res => {
+      //   console.log("tType", res)
+      //   if (res.code == 0) {
+      //     this.nowpatentType = res.data
+      //   }
+      // })
     },
     sure() {
       console.log(this.selectType)
@@ -112,17 +112,17 @@ export default {
         return
       }
       this.isonpatenttype = true
-      Api.setImportPatentType({ patentType: this.selectType })
-        .then(res => {
-          console.log("selectType", res)
-          if (res.code == 0) {
-            this.$message.success("设置成功")
-            this.dialogVisible = false
-          }
-        })
-        .finally(() => {
-          this.isonpatenttype = false
-        })
+      // Api.setImportPatentType({ patentType: this.selectType })
+      //   .then(res => {
+      //     console.log("selectType", res)
+      //     if (res.code == 0) {
+      //       this.$message.success("设置成功")
+      //       this.dialogVisible = false
+      //     }
+      //   })
+      //   .finally(() => {
+      //     this.isonpatenttype = false
+      //   })
     }
   }
 }
