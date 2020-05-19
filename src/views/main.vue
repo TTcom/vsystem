@@ -7,29 +7,14 @@
       </h2>
       <ul>
         <li v-for="(item, index) in systemarr" :key="index">
-          <div
-            class="lititle paddingleft cur"
-            @click="ontitleli(index)"
-            :class="{ cwhite: breadContentarr[0] == item.meta, paddingleft70: isFoldLeft }"
-          >
+          <div class="lititle paddingleft cur" @click="ontitleli(index)" :class="{ cwhite: breadContentarr[0] == item.meta, paddingleft70: isFoldLeft }">
             <i class="lefticon" :class="geticon(index)" @click="isFoldLeft = false"></i>
             <span>{{ item.meta }}</span>
-            <i
-              class="el-icon-arrow-down"
-              :class="{ roate180: index == vindex }"
-              v-show="isShowAllContent"
-            ></i>
+            <i class="el-icon-arrow-down" :class="{ roate180: index == vindex }" v-show="isShowAllContent"></i>
           </div>
           <hetransition>
             <ul class="onvueheight" v-show="index == vindex && isShowAllContent">
-              <router-link
-                v-for="(initem, vndex) in item.children"
-                :key="vndex"
-                tag="li"
-                class="paddingleft tab-item"
-                :to="initem.path"
-                >{{ initem.name }}</router-link
-              >
+              <router-link v-for="(initem, vndex) in item.children" :key="vndex" tag="li" class="paddingleft tab-item" :to="initem.path">{{ initem.name }}</router-link>
             </ul>
           </hetransition>
         </li>

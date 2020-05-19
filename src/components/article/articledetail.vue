@@ -17,13 +17,7 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="是否发布">
-              {{
-                articleobj.isPublish == 1
-                  ? "已发布"
-                  : articleobj.isPublish == 2
-                  ? "审核拒绝"
-                  : "未发布"
-              }}
+              {{ articleobj.isPublish == 1 ? "已发布" : articleobj.isPublish == 2 ? "审核拒绝" : "未发布" }}
             </el-form-item>
           </el-col>
           <el-col :span="12">
@@ -49,8 +43,7 @@
         <el-row>
           <el-col :span="24">
             <el-form-item label="文章内容">
-              <quill-editor class="editor" disabled ref="myQuillEditor" :options="editorOption">
-              </quill-editor>
+              <quill-editor class="editor" disabled ref="myQuillEditor" :options="editorOption"> </quill-editor>
             </el-form-item>
           </el-col>
         </el-row>

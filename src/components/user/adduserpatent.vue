@@ -18,15 +18,7 @@
       <el-table-column prop="agent" label="代理人"> </el-table-column>
       <el-table-column prop="inventType" label="发明类型">
         <template slot-scope="{ row }">
-          {{
-            row.inventType == 1
-              ? "发明专利"
-              : row.inventType == 2
-              ? "授权发明"
-              : row.inventType == 3
-              ? "外观专利"
-              : "实用新型"
-          }}
+          {{ row.inventType == 1 ? "发明专利" : row.inventType == 2 ? "授权发明" : row.inventType == 3 ? "外观专利" : "实用新型" }}
         </template>
       </el-table-column>
       <el-table-column prop="petitionNum" label="申请编号"> </el-table-column>
@@ -51,13 +43,7 @@
     </el-table>
     <el-row>
       <el-col :span="24" style="text-align: right;background: white;">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-          layout="total, prev, pager, next"
-          :total="total"
-        >
-        </el-pagination>
+        <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
       </el-col>
     </el-row>
   </div>

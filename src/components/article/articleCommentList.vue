@@ -30,51 +30,22 @@
               iconColor="red"
               @onConfirm="deletmessage(row)"
             >
-              <span
-                class="cur"
-                slot="reference"
-                style="color: red;margin-right: 15px;cursor: pointer;"
-                >删除</span
-              >
+              <span class="cur" slot="reference" style="color: red;margin-right: 15px;cursor: pointer;">删除</span>
             </el-popconfirm>
-            <span @click="lookReport(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;"
-              >文章评论举报列表</span
-            >
-            <span
-              @click="lookReport(row, 1)"
-              style="color:#66b1ff;margin-right: 15px;cursor: pointer;"
-              >文章举报列表</span
-            >
+            <span @click="lookReport(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;">文章评论举报列表</span>
+            <span @click="lookReport(row, 1)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;">文章举报列表</span>
           </template>
         </el-table-column>
       </el-table>
 
       <el-row>
         <el-col :span="24" style="text-align: right;background: white;">
-          <el-pagination
-            @current-change="handleCurrentChange"
-            :page-size="pageSize"
-            layout="total, prev, pager, next"
-            :total="total"
-          >
-          </el-pagination>
+          <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
         </el-col>
       </el-row>
     </el-card>
-    <el-drawer
-      :title="title"
-      :visible.sync="drawer"
-      direction="rtl"
-      size="80%"
-      @opened="draweropen"
-      :append-to-body="true"
-    >
-      <ArticleReportList
-        ref="articleReportList"
-        :articleobj="articleobj"
-        :reportid="reportid"
-        :isnocommentId="isnocommentId"
-      ></ArticleReportList>
+    <el-drawer :title="title" :visible.sync="drawer" direction="rtl" size="80%" @opened="draweropen" :append-to-body="true">
+      <ArticleReportList ref="articleReportList" :articleobj="articleobj" :reportid="reportid" :isnocommentId="isnocommentId"></ArticleReportList>
     </el-drawer>
   </div>
 </template>

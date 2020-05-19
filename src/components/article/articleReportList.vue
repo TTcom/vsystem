@@ -25,38 +25,20 @@
               iconColor="red"
               @onConfirm="deletmessage(row)"
             >
-              <span
-                class="cur"
-                slot="reference"
-                style="color: red;margin-right: 15px;cursor: pointer;"
-                >删除</span
-              >
+              <span class="cur" slot="reference" style="color: red;margin-right: 15px;cursor: pointer;">删除</span>
             </el-popconfirm>
-            <span @click="examine(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;"
-              >审核</span
-            >
+            <span @click="examine(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;">审核</span>
           </template>
         </el-table-column>
       </el-table>
 
       <el-row>
         <el-col :span="24" style="text-align: right;background: white;">
-          <el-pagination
-            @current-change="handleCurrentChange"
-            :page-size="pageSize"
-            layout="total, prev, pager, next"
-            :total="total"
-          >
-          </el-pagination>
+          <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
         </el-col>
       </el-row>
     </el-card>
-    <el-dialog
-      title="文章评论审核"
-      :visible.sync="dialogVisible"
-      width="40%"
-      :append-to-body="true"
-    >
+    <el-dialog title="文章评论审核" :visible.sync="dialogVisible" width="40%" :append-to-body="true">
       <el-row>
         <el-form ref="form" label-width="80px">
           <el-form-item label="是否发布">
@@ -65,11 +47,7 @@
             <el-radio v-model="iscroos" label="3">驳回举报</el-radio>
           </el-form-item>
           <el-form-item label="审核原因" style="display: block;">
-            <el-input
-              v-model="croosreason"
-              placeholder="请输入内容"
-              style="width: 100%;"
-            ></el-input>
+            <el-input v-model="croosreason" placeholder="请输入内容" style="width: 100%;"></el-input>
           </el-form-item>
         </el-form>
       </el-row>

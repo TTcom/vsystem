@@ -51,23 +51,11 @@
     </el-table>
     <el-row>
       <el-col :span="24" style="text-align: right;background: white;">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-          layout="total, prev, pager, next"
-          :total="total"
-        >
-        </el-pagination>
+        <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
       </el-col>
     </el-row>
 
-    <el-drawer
-      :title="title"
-      :visible.sync="drawer"
-      :direction="direction"
-      :size="size"
-      @closed="success"
-    >
+    <el-drawer :title="title" :visible.sync="drawer" :direction="direction" :size="size" @closed="success">
       <component :is="cpn" :userobj="userobj"></component>
     </el-drawer>
   </div>

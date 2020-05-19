@@ -20,13 +20,7 @@
       </el-table>
       <el-row>
         <el-col :span="24" style="text-align: right;background: white;">
-          <el-pagination
-            @current-change="handleCurrentChange"
-            :page-size="pageSize"
-            layout="total, prev, pager, next"
-            :total="total"
-          >
-          </el-pagination>
+          <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
         </el-col>
       </el-row>
       <div style="margin:10px 0">

@@ -4,21 +4,13 @@
       <div class="container" v-show="isdata" @keyup.enter="login">
         <h2>We Are The Avengers</h2>
         <div class="signinput">
-          <input
-            type="text"
-            placeholder="your name"
-            id="username"
-            v-model="username"
-            @change="inputchange"
-          />
+          <input type="text" placeholder="your name" id="username" v-model="username" @change="inputchange" />
         </div>
         <div class="signinput">
           <input type="password" placeholder="your password" v-model="password" />
         </div>
         <div class="signinput">
-          <el-button type="primary" :loading="islogining" :disabled="islogining" @click="login">{{
-            islogining ? "logining" : "login"
-          }}</el-button>
+          <el-button type="primary" :loading="islogining" :disabled="islogining" @click="login">{{ islogining ? "logining" : "login" }}</el-button>
         </div>
       </div>
     </transition>
@@ -26,7 +18,7 @@
 </template>
 
 <script>
-import { Login } from "common/api/login"
+//import { Login } from "common/api/login"
 export default {
   data() {
     return {
@@ -58,33 +50,32 @@ export default {
         return
       }
       this.islogining = true
-      let params = { account: this.username, password: this.password }
-
-      Login(params)
-        .then(res => {
-          console.log(res)
-
-          if (res.code == 0) {
-            this.$message({
-              showClose: true,
-              message: "登录成功",
-              type: "success"
-            })
-            localStorage.setItem("vsys_user", JSON.stringify(params))
-            localStorage.setItem("vsys_token", res.data)
-            this.$router.push("/file")
-          } else {
-            this.$errorMessage({
-              showClose: true,
-              message: res.msg,
-              type: "error"
-            })
-          }
-        })
-        .finally(() => {
-          console.log("finally")
-          this.islogining = false
-        })
+      //let params = { account: this.username, password: this.password }
+      this.$router.push("/file")
+      // Login(params)
+      //   .then(res => {
+      //     console.log(res)
+      //     if (res.code == 0) {
+      //       this.$message({
+      //         showClose: true,
+      //         message: "登录成功",
+      //         type: "success"
+      //       })
+      //       localStorage.setItem("vsys_user", JSON.stringify(params))
+      //       localStorage.setItem("vsys_token", res.data)
+      //       this.$router.push("/file")
+      //     } else {
+      //       this.$errorMessage({
+      //         showClose: true,
+      //         message: res.msg,
+      //         type: "error"
+      //       })
+      //     }
+      //   })
+      //   .finally(() => {
+      //     console.log("finally")
+      //     this.islogining = false
+      //   })
     },
     usertest() {
       if (!this.username) {

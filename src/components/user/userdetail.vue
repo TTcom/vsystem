@@ -56,12 +56,7 @@
         </el-row>
       </el-form>
     </el-card>
-    <el-dialog
-      title="用户身份认证审核"
-      :visible.sync="dialogVisible"
-      width="40%"
-      :append-to-body="true"
-    >
+    <el-dialog title="用户身份认证审核" :visible.sync="dialogVisible" width="40%" :append-to-body="true">
       <el-row>
         <el-form ref="form" label-width="auto">
           <el-form-item label="认证状态">
@@ -75,9 +70,7 @@
       </el-row>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" :loading="isonpolice" :disabled="isonpolice" @click="sure">{{
-          isonpolice ? "审核中" : "确 定"
-        }}</el-button>
+        <el-button type="primary" :loading="isonpolice" :disabled="isonpolice" @click="sure">{{ isonpolice ? "审核中" : "确 定" }}</el-button>
       </span>
     </el-dialog>
   </div>

@@ -4,9 +4,7 @@
       <div class="htleft">
         <el-breadcrumb separator="/">
           <el-breadcrumb-item>首页</el-breadcrumb-item>
-          <el-breadcrumb-item v-for="(item, index) in breadContentarr" :key="index">{{
-            item
-          }}</el-breadcrumb-item>
+          <el-breadcrumb-item v-for="(item, index) in breadContentarr" :key="index">{{ item }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <div class="htright" @mouseenter="isShowUserList = true" @mouseleave="thisisleave">

@@ -66,13 +66,7 @@
     </el-table>
     <el-row>
       <el-col :span="24" style="text-align: right;background: white;">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-          layout="total, prev, pager, next"
-          :total="total"
-        >
-        </el-pagination>
+        <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
       </el-col>
     </el-row>
 
@@ -90,18 +84,10 @@
       </el-row>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" :loading="isonpolice" :disabled="isonpolice" @click="sure">{{
-          isonpolice ? "审核中" : "确 定"
-        }}</el-button>
+        <el-button type="primary" :loading="isonpolice" :disabled="isonpolice" @click="sure">{{ isonpolice ? "审核中" : "确 定" }}</el-button>
       </span>
     </el-dialog>
-    <el-drawer
-      :title="title"
-      :visible.sync="drawer"
-      :direction="direction"
-      :size="size"
-      @closed="success"
-    >
+    <el-drawer :title="title" :visible.sync="drawer" :direction="direction" :size="size" @closed="success">
       <component :is="cpn" :articleobj="articleobj"></component>
       <!-- <Articledetail :articleobj = "articleobj"></Articledetail> -->
     </el-drawer>

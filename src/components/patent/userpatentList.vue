@@ -42,21 +42,13 @@
 
       <el-table-column prop="updateTime" label="操作">
         <template slot-scope="{ row }">
-          <span @click="examine(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;"
-            >审核</span
-          >
+          <span @click="examine(row)" style="color:#66b1ff;margin-right: 15px;cursor: pointer;">审核</span>
         </template>
       </el-table-column>
     </el-table>
     <el-row>
       <el-col :span="24" style="text-align: right;background: white;">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          :page-size="pageSize"
-          layout="total, prev, pager, next"
-          :total="total"
-        >
-        </el-pagination>
+        <el-pagination @current-change="handleCurrentChange" :page-size="pageSize" layout="total, prev, pager, next" :total="total"> </el-pagination>
       </el-col>
     </el-row>
 
@@ -69,11 +61,7 @@
             <el-radio v-model="iscroos" label="3">拒绝</el-radio>
           </el-form-item>
           <el-form-item label="审核原因" style="display: block;">
-            <el-input
-              v-model="croosreason"
-              placeholder="请输入内容"
-              style="width: 100%;"
-            ></el-input>
+            <el-input v-model="croosreason" placeholder="请输入内容" style="width: 100%;"></el-input>
           </el-form-item>
         </el-form>
       </el-row>

@@ -19,9 +19,7 @@
       >
         <el-button type="primary" :loading="isExportPatentes">专利信息批量导入es</el-button>
       </el-upload>
-      <el-button type="success" style="margin-left: 10px;" @click="downPatentFile"
-        >下载专利导入文件模板</el-button
-      >
+      <el-button type="success" style="margin-left: 10px;" @click="downPatentFile">下载专利导入文件模板</el-button>
       <el-button type="info" @click="downLawFile">下载法律状态文件模板</el-button>
       <el-upload
         class="upload-demo"
@@ -49,22 +47,14 @@
           </el-form-item>
           <el-form-item label="专利类型列表">
             <el-select v-model="selectType" placeholder="请选择">
-              <el-option
-                v-for="(item, index) in patentlist"
-                :key="index"
-                :label="item"
-                :value="item"
-              >
-              </el-option>
+              <el-option v-for="(item, index) in patentlist" :key="index" :label="item" :value="item"> </el-option>
             </el-select>
           </el-form-item>
         </el-form>
       </el-row>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" :loading="isonpatenttype" @click="sure">{{
-          isonpatenttype ? "发送中" : "确 定"
-        }}</el-button>
+        <el-button type="primary" :loading="isonpatenttype" @click="sure">{{ isonpatenttype ? "发送中" : "确 定" }}</el-button>
       </span>
     </el-dialog>
   </div>
@@ -89,14 +79,10 @@ export default {
   },
   methods: {
     downLawFile() {
-      window.location.href = `http://221.224.123.197:50003/downloadLawStatusTemplate?AccessToken=${localStorage.getItem(
-        "vsys_token"
-      )}`
+      window.location.href = `http://221.224.123.197:50003/downloadLawStatusTemplate?AccessToken=${localStorage.getItem("vsys_token")}`
     },
     downPatentFile() {
-      window.location.href = `http://221.224.123.197:50003/downloadPatentTemplate?AccessToken=${localStorage.getItem(
-        "vsys_token"
-      )}`
+      window.location.href = `http://221.224.123.197:50003/downloadPatentTemplate?AccessToken=${localStorage.getItem("vsys_token")}`
     },
 
     filesuccess() {

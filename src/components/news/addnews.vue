@@ -2,25 +2,13 @@
   <div class="addnew">
     <el-card style="margin-bottom: 10px;">
       <el-form :model="model" :inline="true" ref="ruleForm">
-        <el-form-item
-          label="消息名称"
-          prop="name"
-          :rules="[{ required: true, message: '请输入消息名称', trigger: 'blur' }]"
-        >
+        <el-form-item label="消息名称" prop="name" :rules="[{ required: true, message: '请输入消息名称', trigger: 'blur' }]">
           <el-input v-model="model.name" placeholder="请输入内容"></el-input>
         </el-form-item>
-        <el-form-item
-          label="消息内容"
-          prop="content"
-          :rules="[{ required: true, message: '请输入内容', trigger: 'blur' }]"
-        >
+        <el-form-item label="消息内容" prop="content" :rules="[{ required: true, message: '请输入内容', trigger: 'blur' }]">
           <el-input v-model="model.content" placeholder="请输入内容"></el-input>
         </el-form-item>
-        <el-form-item
-          label="消息类型"
-          prop="type"
-          :rules="[{ required: true, message: '请选择消息类型', trigger: 'blur' }]"
-        >
+        <el-form-item label="消息类型" prop="type" :rules="[{ required: true, message: '请选择消息类型', trigger: 'blur' }]">
           <el-select v-model="model.type" placeholder="请选择" clearable>
             <el-option label="系统通知" value="1"> </el-option>
             <el-option label="用户通知" value="2"> </el-option>
@@ -72,9 +60,7 @@ export default {
     add() {
       this.$refs["ruleForm"].validate(async valid => {
         if (valid) {
-          const { code, msg } = this.isedit
-            ? await Api.updateMessgeByCondition(this.model)
-            : await Api.createMessge(this.model)
+          const { code, msg } = this.isedit ? await Api.updateMessgeByCondition(this.model) : await Api.createMessge(this.model)
           if (code == 0) {
             this.$message.success("保存成功")
             this.model = {

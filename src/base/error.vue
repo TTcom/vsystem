@@ -1,13 +1,7 @@
 <template>
   <transition name="el-message-fade" @after-leave="handleAfterLeave">
     <div
-      :class="[
-        'el-message error-message',
-        type && !iconClass ? `el-message--${type}` : '',
-        center ? 'is-center' : '',
-        showClose ? 'is-closable' : '',
-        customClass
-      ]"
+      :class="['el-message error-message', type && !iconClass ? `el-message--${type}` : '', center ? 'is-center' : '', showClose ? 'is-closable' : '', customClass]"
       :style="positionStyle"
       v-show="visible"
       @mouseenter="clearTimer"
@@ -21,11 +15,7 @@
         <p v-else v-html="message" class="el-message__content"></p>
       </slot> -->
       <div class="bruce flex-ct-x">
-        <div
-          class="fault-text el-message__content"
-          :data-text="message"
-          v-if="!dangerouslyUseHTMLString"
-        >
+        <div class="fault-text el-message__content" :data-text="message" v-if="!dangerouslyUseHTMLString">
           {{ message }}
         </div>
         <div class="fault-text el-message__content" :data-text="message" v-else>{{ message }}</div>
