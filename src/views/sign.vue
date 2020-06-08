@@ -51,7 +51,7 @@ export default {
       }
       this.islogining = true
       //let params = { account: this.username, password: this.password }
-      this.$router.push("/file")
+      this.$router.push("/article")
       // Login(params)
       //   .then(res => {
       //     console.log(res)
@@ -79,7 +79,7 @@ export default {
     },
     usertest() {
       if (!this.username) {
-        this.$message({
+        this.$errorMessage({
           showClose: true,
           message: "用户名不可为空",
           type: "error"
@@ -87,7 +87,7 @@ export default {
         return false
       }
       if (!this.password) {
-        this.$message({
+        this.$errorMessage({
           showClose: true,
           message: "密码不可为空",
           type: "error"

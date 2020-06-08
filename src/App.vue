@@ -14,13 +14,12 @@
             <li v-for="item in items" v-bind:key="item">{{ item }}</li>
           </transition-group>
     </div>-->
-    <!-- <div class="onbox">
-          <transition name="lazy-component">
-          <div class="vbox" v-if="isCllose">
-          </div>
-           </transition>
+    <div class="onbox">
+      <transition name="lazy-component">
+        <div class="vbox" v-if="isCllose"></div>
+      </transition>
     </div>
-    <el-button type="primary" @click="isCllose = !isCllose">主要按钮</el-button> -->
+    <el-button type="primary" @click="isCllose = !isCllose">主要按钮</el-button>
   </div>
 </template>
 <script>
