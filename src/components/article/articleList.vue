@@ -94,7 +94,7 @@
   </div>
 </template>
 <script>
-import Api from "common/api/article"
+import Api from "@/common/api/article"
 import Articledetail from "./articledetail"
 import articleCommentList from "./articleCommentList"
 export default {

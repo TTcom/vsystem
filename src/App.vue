@@ -14,12 +14,6 @@
             <li v-for="item in items" v-bind:key="item">{{ item }}</li>
           </transition-group>
     </div>-->
-    <div class="onbox">
-      <transition name="lazy-component">
-        <div class="vbox" v-if="isCllose"></div>
-      </transition>
-    </div>
-    <el-button type="primary" @click="isCllose = !isCllose">主要按钮</el-button>
   </div>
 </template>
 <script>
@@ -33,7 +27,6 @@ export default {
   data() {
     return {
       isShow: true,
-      isCllose: false,
       asdasdsa: 213,
       opp: "opppp",
       name: "jack",
@@ -41,15 +34,6 @@ export default {
       age: 12
     }
   },
-  created() {
-    console.log(process.env.VUE_APP_API_URL)
-  },
-  // beforeMount(){
-  //    console.log("beforeMount father")
-  // },
-  // mounted(){
-  //    console.log("mounted father")
-  // },
   methods: {
     shuffle() {
       // this.items = _.shuffle(this.items);

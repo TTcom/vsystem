@@ -32,7 +32,7 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex"
-import { loginOut } from "common/api/login"
+import { loginOut } from "@/common/api/login"
 export default {
   data() {
     return {
@@ -40,19 +40,19 @@ export default {
       greetcontent: "",
       greetText: [
         {
-          text: "早上好，Jarvis，用力呼吸新的空气，开始美好的一天吧！"
+          text: "早上好，Jarvis，无语！"
         },
         {
-          text: "上午好，Jarvis，开始用行动证明自己吧！"
+          text: "上午好，Jarvis，无语！"
         },
         {
-          text: "中午好，Jarvis，累了就睡会儿吧！"
+          text: "中午好，Jarvis，无语！"
         },
         {
-          text: "下午好，Jarvis，把事情做到最好！"
+          text: "下午好，Jarvis，无语！"
         },
         {
-          text: "晚上好，Jarvis，记得吃饭，记得睡觉！"
+          text: "晚上好，Jarvis，无语！"
         }
       ]
     }

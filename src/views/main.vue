@@ -41,7 +41,7 @@ export default {
       isFoldLeft: false,
       isShowAllContent: true,
       vindex: -1,
-      titlearr: ["我不累", "Keep Walk", "Best wish", "我叫就是干", "扶我起来", "我还爱你"],
+      titlearr: ["我不累", "Keep Walk", "Best wish", "我叫就是干", "扶我起来"],
       title: "",
       systemarr: []
     }

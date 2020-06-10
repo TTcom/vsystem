@@ -1,4 +1,4 @@
-!<template>
+<template>
   <div class="articleReportList">
     <el-card style="margin-bottom: 10px;">
       <el-table :data="articleData" style="width: 100%">
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import Api from "common/api/article"
+import Api from "@/common/api/article"
 export default {
   props: ["articleobj", "reportid", "isnocommentId"],
   data() {

@@ -5,8 +5,8 @@ import store from "./store"
 import "./common/css/reset.scss"
 import "./common/css/index.scss"
 import "./permission"
-import VueCropper from "vue-cropper"
-Vue.use(VueCropper)
+// import VueCropper from "vue-cropper"
+// Vue.use(VueCropper)
 //import "./common/js/requireTest"
 //import 'lib-flexible/flexible'
 

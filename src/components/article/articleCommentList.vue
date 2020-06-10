@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import Api from "common/api/article"
+import Api from "@/common/api/article"
 import ArticleReportList from "./articleReportList"
 export default {
   components: {

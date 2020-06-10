@@ -35,18 +35,17 @@ const routes = [
     meta: "动画整理",
     children: [
       {
-        path: "/css/cssAnimation",
-        name: "cssAnimation",
-        meta: "css-动画整理",
-        component: () => import("../components/css/cssAnimation.vue")
+        path: "/cssAnimation/solarSystem",
+        name: "太阳系系统",
+        meta: "动画整理-太阳系",
+        component: () => import("../components/cssAnimation/solarSystem.vue")
+      },
+      {
+        path: "/cssAnimation/someCollection",
+        name: "css动画合集",
+        meta: "动画整理-动画合集",
+        component: () => import("../components/cssAnimation/someCollection.vue")
       }
-
-      // {
-      //   path: "/user/userManner",
-      //   name: "用户发布",
-      //   meta: "用户管理-用户发布",
-      //   component: () => import("../components/user/userManner.vue")
-      // }
     ]
   }
 ]
