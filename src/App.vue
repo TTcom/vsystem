@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div class="onbox">
+    <!-- <div class="onbox">
       boxxxx
-    </div>
+    </div> -->
     <!-- <Rendertest></Rendertest> -->
     <!-- <dynamicComponent :name="name" :age="age" @onmmll="onmm" ></dynamicComponent> -->
     <router-view />
@@ -65,9 +65,6 @@ export default {
 .onbox {
   @include flex(row);
   width: 300px;
-  height: 500px;
-  margin: auto;
-  perspective: 500px;
 }
 .vbox {
   width: 300px;
@@ -80,12 +77,10 @@ export default {
   margin-top: 200px;
   transform: scale(0.4) translateY(100%) rotateX(45deg);
 }
-
 .lazy-component-enter-to {
   //过渡的结束状态
   opacity: 1;
 }
-
 .lazy-component-enter-active {
   //过渡生效时的状态
   transition: all 0.5s;
