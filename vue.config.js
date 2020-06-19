@@ -28,6 +28,11 @@ module.exports = {
 			//打包后的css带版本号,文件名会改变
 			filename: 'css/[name].[' + Timestamp + '].css',
 			chunkFilename: 'css/[name].[' + Timestamp + '].css'
+		},
+		loaderOptions: {
+			sass: {
+				prependData: `@import "@/common/css/mixin.scss";`
+			}
 		}
 	},
 	configureWebpack: {

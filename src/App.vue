@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="onbox">
+      boxxxx
+    </div>
     <!-- <Rendertest></Rendertest> -->
     <!-- <dynamicComponent :name="name" :age="age" @onmmll="onmm" ></dynamicComponent> -->
     <router-view />
@@ -60,6 +63,7 @@ export default {
 </script>
 <style lang="scss">
 .onbox {
+  @include flex(row);
   width: 300px;
   height: 500px;
   margin: auto;
