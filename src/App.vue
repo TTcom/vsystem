@@ -20,7 +20,6 @@
   </div>
 </template>
 <script>
-//import dynamicComponent from "./views/dynamicComponent"
 //import funcComponent from "./views/funcComponent"
 export default {
   components: {

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script src="live2d.js"></script>
     <title>drink</title>
   </head>
   <body>
@@ -12,6 +13,17 @@
       <strong>We're sorry but drink doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
+    <div class="waifu" style="position: fixed;z-index: 9999;bottom: 0;right: 0;">
+      <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+    </div>
   </body>
 </html>
+<script>
+  const intModel = (index)=>{
+    loadlive2d('live2d', 'https://live2d.fghrsh.net/api/get/?id='+index+'-0', console.log('live2d','模型加载完成'));
+  }
+  intModel(Math.floor((Math.random()*7)+1))
+  setInterval(() => {
+    intModel(Math.floor((Math.random()*7)+1))
+  }, 60 * 1000);
+</script>
