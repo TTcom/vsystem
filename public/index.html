@@ -20,10 +20,11 @@
 </html>
 <script>
   const intModel = (index)=>{
-    loadlive2d('live2d', 'https://live2d.fghrsh.net/api/get/?id='+index+'-0', console.log('live2d','模型加载完成'));
+    loadlive2d('live2d', 'https://live2d.fghrsh.net/api/get/?id='+index+'-0');
+    console.log('live2d','模型加载完成')
   }
   intModel(Math.floor((Math.random()*7)+1))
   setInterval(() => {
     intModel(Math.floor((Math.random()*7)+1))
-  }, 60 * 1000);
+  }, 60 * 1000)
 </script>

@@ -30,6 +30,19 @@ const routes = [
     ]
   },
   {
+    path: "/commonfn",
+    component: Main,
+    meta: "常用函数",
+    children: [
+      {
+        path: "/commonfn/commonfnList",
+        name: "防抖",
+        meta: "常用函数-防抖",
+        component: () => import("../components/commonfn/commonfnList.vue")
+      }
+    ]
+  },
+  {
     path: "/css",
     component: Main,
     meta: "动画整理",

@@ -40,19 +40,19 @@ export default {
       greetcontent: "",
       greetText: [
         {
-          text: "早上好，Jarvis，无语！"
+          text: "早上好，Jarvis"
         },
         {
-          text: "上午好，Jarvis，无语！"
+          text: "上午好，Jarvis"
         },
         {
-          text: "中午好，Jarvis，无语！"
+          text: "中午好，Jarvis！"
         },
         {
-          text: "下午好，Jarvis，无语！"
+          text: "下午好，Jarvis"
         },
         {
-          text: "晚上好，Jarvis，无语！"
+          text: "晚上好，Jarvis"
         }
       ]
     }
