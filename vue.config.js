@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Timestamp = new Date().getTime(); //当前时间为了防止打包缓存不刷新，所以给每个js文件都加一个时间戳
 module.exports = {
 	devServer: {
@@ -44,20 +44,20 @@ module.exports = {
 			filename: `js/[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.js`,
 			chunkFilename: `js/[name].${process.env.VUE_APP_CURRENTMODE}.${Timestamp}.js`
 		},
-		optimization: {
-			minimizer: [new UglifyJsPlugin({
-				sourceMap: true, //是否需要map文件
-				uglifyOptions: {
-					output: {
-						comments: false // 去掉注释
-					},
-					warnings: false,
-					compress: {
-						drop_console: true,
-					}
-				},
-			})],
-		},
+		// optimization: {
+		// 	minimizer: [new UglifyJsPlugin({
+		// 		sourceMap: true, //是否需要map文件
+		// 		uglifyOptions: {
+		// 			output: {
+		// 				comments: false // 去掉注释
+		// 			},
+		// 			warnings: false,
+		// 			compress: {
+		// 				drop_console: true,
+		// 			}
+		// 		},
+		// 	})],
+		// },
 		plugins: [
 			// Ignore all locale files of moment.js
 			new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/) //忽略 moment 的本地化内容

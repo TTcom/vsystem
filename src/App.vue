@@ -17,10 +17,10 @@
             <li v-for="item in items" v-bind:key="item">{{ item }}</li>
           </transition-group>
     </div>-->
+    <!-- <jump :title.sync="title"></jump> -->
   </div>
 </template>
 <script>
-//import funcComponent from "./views/funcComponent"
 export default {
   components: {
     // dynamicComponent,
@@ -28,6 +28,7 @@ export default {
   },
   data() {
     return {
+      title: "标题",
       isShow: true,
       asdasdsa: 213,
       opp: "opppp",
@@ -37,6 +38,9 @@ export default {
     }
   },
   methods: {
+    nowcheck() {
+      console.log("nowcheck")
+    },
     shuffle() {
       // this.items = _.shuffle(this.items);
       let a = this.items[3]

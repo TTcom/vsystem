@@ -129,7 +129,7 @@ export default {
   },
   created() {
     console.log(this.$fliterTime(615913200000))
-    this.getarticleList(this.pageNum)
+    // this.getarticleList(this.pageNum)
   },
   mounted() {},
   methods: {

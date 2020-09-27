@@ -11,9 +11,38 @@ const routes = [
     component: () => import("../views/sign.vue")
   },
   {
+    path: "/vue",
+    component: Main,
+    meta: "vue",
+    redirect: "/vue/vueRouter",
+    children: [
+      {
+        path: "/vue/vueRouter",
+        name: "vue路由",
+        meta: "vue-vue路由",
+        component: () => import("../components/vue/vueRouter.vue")
+      }
+    ]
+  },
+  {
+    path: "/typescript",
+    component: Main,
+    meta: "typescript",
+    redirect: "/typescript/main",
+    children: [
+      {
+        path: "/typescript/main",
+        name: "typescript概述",
+        meta: "typescript-typescript概述",
+        component: () => import("../components/typescript/typescript.vue")
+      }
+    ]
+  },
+  {
     path: "/article",
     component: Main,
     meta: "文章管理",
+    redirect: "/article/articleList",
     children: [
       {
         path: "/article/articleList",
