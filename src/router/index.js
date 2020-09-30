@@ -35,6 +35,12 @@ const routes = [
         name: "typescript概述",
         meta: "typescript-typescript概述",
         component: () => import("../components/typescript/typescript.vue")
+      },
+      {
+        path: "/typescript/ts_symbol",
+        name: "typescript中的符号",
+        meta: "typescript-typescript中的符号",
+        component: () => import("../components/typescript/ts_symbol.vue")
       }
     ]
   },

@@ -51,7 +51,7 @@ export default {
       }
       this.islogining = true
       //let params = { account: this.username, password: this.password }
-      this.$router.push("/article")
+      this.$router.push("/vue")
       // Login(params)
       //   .then(res => {
       //     console.log(res)
