@@ -13,8 +13,7 @@ export default {
       formInline: {}
     }
   },
-  render(h, ctx) {
-    console.log("ctx", ctx)
+  render() {
     let data = {
       on: {
         click: this.handelClick

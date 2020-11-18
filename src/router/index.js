@@ -44,26 +44,26 @@ const routes = [
       }
     ]
   },
-  {
-    path: "/article",
-    component: Main,
-    meta: "文章管理",
-    redirect: "/article/articleList",
-    children: [
-      {
-        path: "/article/articleList",
-        name: "文章列表",
-        meta: "文章管理-文章列表",
-        component: () => import("../components/article/articleList.vue")
-      },
-      {
-        path: "/article/quilledit",
-        name: "文章发布",
-        meta: "文章管理-文章发布",
-        component: () => import("../components/article/quilledit.vue")
-      }
-    ]
-  },
+  // {
+  //   path: "/article",
+  //   component: Main,
+  //   meta: "文章管理",
+  //   redirect: "/article/articleList",
+  //   children: [
+  //     {
+  //       path: "/article/articleList",
+  //       name: "文章列表",
+  //       meta: "文章管理-文章列表",
+  //       component: () => import("../components/article/articleList.vue")
+  //     },
+  //     {
+  //       path: "/article/quilledit",
+  //       name: "文章发布",
+  //       meta: "文章管理-文章发布",
+  //       component: () => import("../components/article/quilledit.vue")
+  //     }
+  //   ]
+  // },
   {
     path: "/commonfn",
     component: Main,

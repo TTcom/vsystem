@@ -1,7 +1,13 @@
 import Vue from "vue"
 import Main from "./error.vue"
 //import { PopupManager } from 'element-ui/src/utils/popup';
-import { isVNode } from "./vdom"
+function hasOwn(obj, key) {
+  return hasOwnProperty.call(obj, key)
+}
+
+function isVNode(node) {
+  return node !== null && typeof node === "object" && hasOwn(node, "componentOptions")
+}
 let MessageConstructor = Vue.extend(Main)
 
 let instance

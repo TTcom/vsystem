@@ -1,7 +1,6 @@
 <template>
   <transition name="el-message-fade" @after-leave="handleAfterLeave">
     <div
-      class="vsystem_error"
       :class="['el-message error-message', type && !iconClass ? `el-message--${type}` : '', center ? 'is-center' : '', showClose ? 'is-closable' : '', customClass]"
       :style="positionStyle"
       v-show="visible"
@@ -118,54 +117,56 @@ export default {
 }
 </script>
 <style lang="scss">
-.vsystem_error {
+.el-message--error .el-message__content {
+  color: white;
+}
+.el-message--error {
   background: none;
   border: none;
+}
+.error-message {
   min-width: 0;
   padding: 0;
-  .el-message--error .el-message__content {
-    color: white;
-  }
-  .el-message__closeBtn {
-    top: 11px;
-    right: 5px;
-  }
-  .bruce {
+}
+.el-message__closeBtn {
+  top: 11px;
+  right: 5px;
+}
+.bruce {
+  background-color: #000;
+  padding: 20px;
+}
+.fault-text {
+  position: relative;
+  font-weight: bold;
+  font-size: 100px;
+  color: #fff;
+  &::before,
+  &::after {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
     background-color: #000;
-    padding: 20px;
-  }
-  .fault-text {
-    position: relative;
-    font-weight: bold;
-    font-size: 100px;
+    clip: rect(0, 900px, 0, 0);
     color: #fff;
-    &::before,
-    &::after {
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-      background-color: #000;
-      clip: rect(0, 900px, 0, 0);
-      color: #fff;
-      content: attr(data-text);
-      animation: shake 3s linear infinite alternate-reverse;
-    }
-    &::before {
-      left: -2px;
-      text-shadow: 1px 0 #09f;
-    }
-    &::after {
-      left: 2px;
-      text-shadow: -1px 0 #f66;
-      animation-duration: 2s;
-    }
+    content: attr(data-text);
+    animation: shake 3s linear infinite alternate-reverse;
   }
-  @keyframes shake {
-    $steps: 20;
-    @for $i from 0 through $steps {
-      #{percentage($i * (1 / $steps))} {
-        clip: rect(random(100) + px, 9999px, random(100) + px, 0);
-      }
+  &::before {
+    left: -2px;
+    text-shadow: 1px 0 #09f;
+  }
+  &::after {
+    left: 2px;
+    text-shadow: -1px 0 #f66;
+    animation-duration: 2s;
+  }
+}
+@keyframes shake {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i * (1 / $steps))} {
+      clip: rect(random(100) + px, 9999px, random(100) + px, 0);
     }
   }
 }

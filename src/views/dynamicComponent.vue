@@ -1,8 +1,6 @@
 <template>
   <div class="dynamic">
-    <el-button type="primary" @click="handelclick">
-      {{ str }} - name: {{ name }} - age: {{ age }}
-    </el-button>
+    <el-button type="primary" @click="handelclick"> {{ str }} - name: {{ name }} - age: {{ age }} </el-button>
     <el-button type="info" @click="handelinfo">
       外面的大白杨
     </el-button>
