@@ -3,7 +3,7 @@
     <h3>
       路由模式hash和history
     </h3>
-    <div class="on_text">router有两种模式：hash模式（默认）、history模式</div>
+    <highcode :language="'markdown'">router有两种模式：hash模式（默认）、history模式</highcode>
     <div class="on_text">hash模式:</div>
     <div class="on_text">
       路由的哈希模式地址带#号，利用了window可以监听onhashchange事件，当url中的哈希值（#后面的值）如果有变化，前端是可以做到监听并做一些响应，即使前端并没有发起http请求他也能够找到对应页面的代码块进行按需加载

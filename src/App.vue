@@ -5,14 +5,14 @@
     </div> -->
     <!-- <Rendertest></Rendertest> -->
     <!-- <dynamicComponent :name="name" :age="age" @onmmll="onmm"></dynamicComponent> -->
-    <!-- s<router-view /> -->
+    <router-view />
 
-    <funcComponent>
+    <!-- <funcComponent>
       <span @click="onmm">123456</span>
     </funcComponent>
     <el-button type="default" @click="turnon">goon</el-button>
     <el-button type="danger" @click="turnoff">godestroy</el-button>
-    <highcode :code="code" :language="language" />
+    <highcode :code="code" :language="language" /> -->
     <!-- <div id="flip-list-demo" class="demo" style="font-size:18px;padding:0 20px;">
           <button v-on:click="shuffle">Shuffle</button>
           <transition-group name="flip-list" tag="ul">
@@ -23,12 +23,12 @@
   </div>
 </template>
 <script>
-import Vue from "vue"
-import funcComponent from "./views/funcComponent"
-import dynamicComponent from "./views/dynamicComponent"
+//import Vue from "vue"
+// import funcComponent from "./views/funcComponent"
+// import dynamicComponent from "./views/dynamicComponent"
 export default {
   components: {
-    funcComponent
+    //  funcComponent
   },
   data() {
     return {
@@ -44,11 +44,11 @@ export default {
     }
   },
   methods: {
-    turnon() {
-      this.picke = new Vue(dynamicComponent).$mount()
-      console.log("picke", this.picke)
-      this.$el.appendChild(this.picke.$el)
-    },
+    // turnon() {
+    //   this.picke = new Vue(dynamicComponent).$mount()
+    //   console.log("picke", this.picke)
+    //   this.$el.appendChild(this.picke.$el)
+    // },
     turnoff() {
       if (this.picke) {
         this.picke.$destroy()

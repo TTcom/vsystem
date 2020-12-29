@@ -1,10 +1,15 @@
 <template>
   <div class="highcode">
-    <prism :language="language">{{ code }}</prism>
+    <prism inline :language="language">
+      <slot></slot>
+    </prism>
   </div>
 </template>
 <script>
 import Prism from "vue-prism-component"
+
+import "prismjs/components/prism-rust"
+
 export default {
   name: "highcode",
   components: {
@@ -16,7 +21,7 @@ export default {
       type: String
     },
     language: {
-      default: "",
+      default: "javascript",
       type: String
     }
   },

@@ -78,7 +78,7 @@ const routes = [
     ]
   },
   {
-    path: "/css",
+    path: "/cssAnimation",
     component: Main,
     meta: "动画整理",
     children: [
@@ -93,6 +93,19 @@ const routes = [
         name: "css动画合集",
         meta: "动画整理-动画合集",
         component: () => import("../components/cssAnimation/someCollection.vue")
+      }
+    ]
+  },
+  {
+    path: "/js",
+    component: Main,
+    meta: "js",
+    children: [
+      {
+        path: "/js/base",
+        name: "基础知识",
+        meta: "js-基础知识",
+        component: () => import("../components/javascript/base.vue")
       }
     ]
   }
