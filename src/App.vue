@@ -5,7 +5,7 @@
     </div> -->
     <!-- <Rendertest></Rendertest> -->
     <!-- <dynamicComponent :name="name" :age="age" @onmmll="onmm"></dynamicComponent> -->
-    <router-view />
+    <!-- <router-view /> -->
 
     <!-- <funcComponent>
       <span @click="onmm">123456</span>
@@ -20,18 +20,28 @@
           </transition-group>
     </div>-->
     <!-- <jump :title.sync="title"></jump> -->
+    <echartscomponent></echartscomponent>
+    <div v-if="isShow">
+      <input type="text" v-model="rbx" @input="nowcheck" />
+    </div>
+
+    <el-button type="default" @click="isShow = !isShow">goon</el-button>
+    <el-button type="default" @click="turnon">goon</el-button>
   </div>
 </template>
 <script>
 //import Vue from "vue"
 // import funcComponent from "./views/funcComponent"
 // import dynamicComponent from "./views/dynamicComponent"
+import echartscomponent from "./views/echarts"
 export default {
   components: {
     //  funcComponent
+    echartscomponent
   },
   data() {
     return {
+      rbx: "",
       title: "标题",
       isShow: true,
       asdasdsa: 213,
@@ -44,19 +54,17 @@ export default {
     }
   },
   methods: {
-    // turnon() {
-    //   this.picke = new Vue(dynamicComponent).$mount()
-    //   console.log("picke", this.picke)
-    //   this.$el.appendChild(this.picke.$el)
-    // },
-    turnoff() {
-      if (this.picke) {
-        this.picke.$destroy()
-        console.log("picke", this.picke)
-      }
+    turnon() {
+      console.log("picke", this.rbx)
     },
+    // turnoff() {
+    //   if (this.picke) {
+    //     this.picke.$destroy()
+    //     console.log("picke", this.picke)
+    //   }
+    // },
     nowcheck() {
-      console.log("nowcheck")
+      console.log("picke", this.rbx)
     },
     shuffle() {
       // this.items = _.shuffle(this.items);
